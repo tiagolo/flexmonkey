@@ -3,4 +3,4 @@
 = Introduction =
 FlexMonkey is a unit testing framework for Flex apps that provides for automating the testing of Flex UI functionality. FlexMonkey can record and play back Flex UI interactions, and generates ActionScript-based testing scripts that can easily be included within a continuous integration process.
 
-Unlike FlexUnit, FlexMonkey provides direct support for UI scripting, and unlike Selenium-Flex, FlexMonkey has no reliance on browser-plugins or special scripting languages. FlexMonkey is 100% Flex/ActionScript-based.
+Unlike FlexUnit, FlexMonkey provides direct support for UI scripting, and unlike Selenium-Flex, FlexMonkey has no reliance on browser-plugins or special scripting languages. FlexMonkey is 100% Flex/!ActionScript-based.
