@@ -248,7 +248,7 @@ public class AQAdapter implements IAQCodecHelper
             }*/
 
 		   // Load environment XML
-		   var te:String = "AutoQuickEnv.xml";
+		   var te:String = "FlexMonkeyEnv.xml";
 	
 			var loader:URLLoader = new URLLoader();
 			configureListeners(loader);
@@ -257,7 +257,7 @@ public class AQAdapter implements IAQCodecHelper
 			try {
 				loader.load(request);
 			} catch (error:Error) {
-				Alert.show("Unable to load AutoQuickEnv.xml from current directory.");
+				Alert.show("Unable to load FlexMonkeyEnv.xml from current directory.");
 			}
         }
     }
