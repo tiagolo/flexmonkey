@@ -2,4 +2,4 @@
 
 = Setup =
 
-Build FlexMonkey from source, or download it.
+Build FlexMonkey from source, or [http://flexmonkey.googlecode.com/files/FlexMonkey.0.1.swc download it].
