@@ -1,8 +1,10 @@
 #summary Getting Started With FlexMonkey
 
-= Setup =
+= Preparing your application for testing =
 
-Build FlexMonkey from source, or [http://flexmonkey.googlecode.com/files/FlexMonkey.0.1.swc download it]. Add FlexMonkey.swc to the compile path of the Flex app you want to test. Add the following Flex compiler options:
+Build FlexMonkey from source, or [http://flexmonkey.googlecode.com/files/FlexMonkey.0.1.swc download it]. Follow the instructions below. (FlexMonkey is configured just like [http://livedocs.adobe.com/flex/201/html/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Book_Parts&file=functest_components2_128_03.html Quick Test Pro]).
+
+Add FlexMonkey.swc to the compile path of the Flex app you want to test and recompile it with the following additional Flex compiler options:
 
 {{{
 -include-libraries "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_agent.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation.swc" "/YOUR_APP_LIBS/FlexMonkey.swc"
@@ -12,4 +14,10 @@ If you're using Flex Builder, make sure the *Framework Linkage* on the *Flex Bui
 
 Copy the file *FlexMonkeyEnv.xml* to the folder containing the swc of the application you're testing.
 
-Start your appliction. FlexMonkey is a Flex [Mixin] class and it launches itself when it's class is loaded. The compiler options above ensure that FlexMonkey is linked into your test app and that it gets loaded when your app runs.
+= Starting FlexMonkey =
+
+Start your appliction. FlexMonkey is a Flex Mixin class and it launches itself when it's class is loaded. The compiler options above ensure that FlexMonkey is linked into your test app and that it gets loaded when your app runs.
+
+= Using FlexMonkey =
+
+See the QuickTutorial.
