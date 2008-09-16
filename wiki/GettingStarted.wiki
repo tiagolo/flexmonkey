@@ -2,7 +2,7 @@
 
 = Preparing your application for testing =
 
-Build FlexMonkey from source, or [http://flexmonkey.googlecode.com/files/FlexMonkey.0.1.swc download it]. Follow the instructions below. (FlexMonkey is configured just like [http://livedocs.adobe.com/flex/201/html/wwhelp/wwhimpl/common/html/wwhelp.htm?context=LiveDocs_Book_Parts&file=functest_components2_128_03.html Quick Test Pro]).
+Build FlexMonkey from source, or [http://flexmonkey.googlecode.com/files/FlexMonkey.0.1.swc download it]. Then configure FlexMonkey as follows.
 
 Add FlexMonkey.swc to the compile path of the Flex app you want to test and recompile it with the following additional Flex compiler options:
 
@@ -10,9 +10,9 @@ Add FlexMonkey.swc to the compile path of the Flex app you want to test and reco
 -include-libraries "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_agent.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation.swc" "/YOUR_APP_LIBS/FlexMonkey.swc"
 }}}
 
-If you're using Flex Builder, make sure the *Framework Linkage* on the *Flex Build Path* Library tab is set to *Merged into Code*. *automation_agent.swc* and *automation.swc* provide the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex automation API] required by FlexMonkey.
+If you're using Flex Builder, make sure the *Framework Linkage* on the *Flex Build Path* Library tab is set to *Merged into Code*. This will ensure that the swc's are merged into your application swf file. *automation_agent.swc* and *automation.swc* provide the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex automation API] required by FlexMonkey.
 
-Copy the file *FlexMonkeyEnv.xml* to the folder containing the swc of the application you're testing.
+Copy the file *FlexMonkeyEnv.xml* to the folder containing the swf of the rebuilt application.
 
 = Starting FlexMonkey =
 
@@ -21,3 +21,7 @@ Start your appliction. FlexMonkey is a Flex Mixin class and it launches itself w
 = Using FlexMonkey =
 
 See the QuickTutorial.
+
+= More Information on the Flex Automation API =
+
+http://www.adobe.com/devnet/flex/samples/custom_automated/
