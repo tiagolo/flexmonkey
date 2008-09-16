@@ -65,7 +65,10 @@ package com.gorillalogic.flexmonkey
 			setResult("Error", msg);
 		} 
 		
-		private function setResult(result:String, msg="") {
+		private function setResult(result:String, msg:String=""):void {
+				if (testsLaunched == 0) {
+					return;
+				}
 				var test:Object = tests.getItemAt(testsLaunched-1);
 				test.result = result;
 				test.msg = msg;
