@@ -1,5 +1,5 @@
 #summary Getting Started With FlexMonkey
-#labels Featured
+#labels Featured,Phase-Deploy
 
 = Preparing your application for testing =
 
