@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<aggro:CollapsableTitleWindow title="Flex Monkey!" xmlns:aggro="de.aggro.components.*" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="646" height="458" creationComplete="create()" >
+<aggro:CollapsableTitleWindow title="Flex Monkey!" xmlns:flexui="flexunit.flexui.*" xmlns:aggro="de.aggro.components.*" xmlns:mx="http://www.adobe.com/2006/mxml" layout="vertical" width="{.33*Application.application.width}" height="{.33*Application.application.height}" creationComplete="create()" >
 	<mx:Script>
 		<![CDATA[
+			import mx.core.Application;
 			import com.flexspy.FlexSpy;
 			import mx.collections.ArrayCollection;
 		]]>
@@ -11,6 +12,8 @@
 	
 <mx:Script>
 	<![CDATA[
+		import com.gorillalogic.flexmonkey.MonkeyEvent;
+		import flexunit.framework.TestSuite;
 		import mx.controls.Alert;
 		import mx.messaging.FlexClient;
 		import mx.controls.Image;
@@ -27,19 +30,21 @@
 	    import mx.automation.IAutomationObject;
 	    import mx.automation.AutomationID;
 	    
+	    [Event(name="success", type="com.gorillalogic.MonkeyEvent")]
+	    
 	    [Bindable]
 		public var commands:ArrayCollection = new ArrayCollection();
+		
+		private static var testSuite:TestSuite = new TestSuite();
 		
 		/**
 		 * Time to pause between command executions, in milliseconds. Defaults to 500.
 		 */ 
 		 [Bindable]
 		public var thinkTime:int = 500;
-		 
+
 		
-		public static var tester:FlexTester = new FlexTester();
-		
-		private static var theMonkey:FlexMonkey;
+		public static var theMonkey:FlexMonkey;
 	
 		private function create():void {
 			theMonkey = this;
@@ -51,10 +56,7 @@
 			Automation.automationManager.addEventListener(AutomationRecordEvent.RECORD, recordHandler, false, 0, true);
                                             
 			AQAdapter.aqAdapter.beginRecording();
-			btnRecord.enabled = false;
-			btnStop.enabled = true;
-			//tabs.selectedIndex = 0;
-			//btnReplay.enabled = false;
+
 		}
 		
 		private function recordHandler(event:AutomationRecordEvent):void {
@@ -93,7 +95,9 @@
 			}
 			
 			source.text =
-				"public static function testSomething():void {\n" +
+				"// FlexUnit test method\n" +
+				"public function testSomething():void {\n" +
+		  		"  FlexMonkey.theMonkey.addEventListener(MonkeyEvent.READY_FOR_VALIDATION, addAsync(verifySomething, 10000));\n" +
 				"  FlexMonkey.runCommands([\n";
 			var first:Boolean = true;	
 			for each (var cmd:FlexCommand in cmds) {
@@ -126,24 +130,41 @@
 			 		source.text+=")"
 
 			}
-			source.text+="   ],\n"; 
+			source.text+="   ]);\n" +
+				"   }\n\n";
 			source.text+=
-				"   function():void {\n" +
-				"      FlexMonkey.assert(true, \"Message...\");\n" +
-				"      FlexMonkey.success();\n" +
-				"   });" +
-				"}";
+				"// Called after commands have been run\n" +
+				"private function verifySomething(event:MonkeyEvent):void {\n" +
+				"   var comp:UIComponent = MonkeyUtils.findComponentWith(\"someAutomationName\")\n" +
+				"   Assert.assertEquals(\"value\",comp.prop);\n" +
+				"}"
 				
 				
 		} 
 		
 		private static function quote(arg:Object):String {
-			return arg is String ? "\"" + arg + "\"" : String(arg);
+			return !(arg is Boolean) ? "\"" + String(arg) + "\"" : String(arg);
 		}
 		
 
+		/**
+		 * 
+		 * Executes the supplied Commands.
+		 * 
+		 * In addition to running FlexCommands, you can also run PauseCommands and CallCommands. For example:
+		 * 
+		 * FlexMonkey.runCommands([
+		 * 		new FlexCommand("SomeButton", "Click", [0], "automationName"),
+		 * 		// Wait an additional 5 seconds
+		 * 		new PauseCommand(5000),
+		 * 		// Check something
+		 * 		new CallCommand(function(Assert.assertTrue(something))
+		 * 		// Run more commands....
+		 * 		new FlexCommand("AnotherButton", "Click", [0], "automationName")
+		 * 		]);
+		 */ 
 		public static function runCommands(cmds:Array, validator:Function=null):void {	
-						
+				
 
 			var runTimer:Timer = new Timer(theMonkey.thinkTime, 1);		
 			var nextCmdIndex:int = 0;	
@@ -151,16 +172,7 @@
 			runTimer.addEventListener(TimerEvent.TIMER_COMPLETE, function():void {
 				runTimer.delay = theMonkey.thinkTime;
 				if (nextCmdIndex == cmds.length) {
-					if (validator != null) {
-						try {
-							validator();
-						} catch (error:AssertionFailed) {
-							return;
-						} catch (error:Error) {
-							tester.error(error.getStackTrace());
-						}
-					}
-					FlexMonkey.success();
+					theMonkey.dispatchEvent(new MonkeyEvent(MonkeyEvent.READY_FOR_VALIDATION));
 					return;
 				}
 				
@@ -194,8 +206,6 @@
 			});
 			runTimer.start();
 		}
-		
-		
 		
 		private function runSelected(event:MouseEvent):void {
 			var selectedCommands:Array = cmdGrid.selectedItems.reverse();
@@ -246,33 +256,17 @@
 		public static function findComponentWith(value:String, prop:String="automationName", container:UIComponent=null):UIComponent {
 			return MonkeyUtils.findComponentWith(value, prop, container);
 		}
+
 		
-		public static function addTest(func:Function, desc:String=null):void {
-			tester.addTest(func, desc);
+		public static function addTestSuite(suite:Class):void {
+			testSuite.addTestSuite(suite);
 		}
 		
-		public static function assert(cond:Boolean, msg:String):void {
-			tester.assert(cond, msg);
+		public function run():void {
+			testRunner.test = testSuite;
+			testRunner.startTest();
 		}
 		
-		public static function assertEquals(expected:Object, actual:Object, msg:String=null):void {
-			tester.assert(expected == actual, msg == null ? "Expected '" + expected + " but got '" + actual + "'" : msg);
-		}
-		
-		public static function success():void {
-			tester.success();
-		}
-		
-		public static function runTests():void {
-			var tests:Array;	
-		
-			if (theMonkey.testGrid.selectedItems.length > 0) {
-				tests = theMonkey.testGrid.selectedItems.reverse();
-			} else {
-				tests = ArrayCollection(theMonkey.testGrid.dataProvider).toArray();
-			}			
-			tester.runTests(tests);
-		}
 		
 		public function removeCommand(img:Image):void {
 			commands.removeItemAt(img.listData.rowIndex);
@@ -281,22 +275,21 @@
 		
 	]]>
 </mx:Script>
-	<mx:HBox>
-		<mx:Button label="Record" click="startRecording()" id="btnRecord" />
-		<mx:Button label="Stop"  mouseDown="stopRecording()" id="btnStop" enabled="false"/>
-		<mx:Button id="btnFlexSpy" label="FlexSpy" click="FlexSpy.show()" />
-	</mx:HBox>
-	<mx:TabNavigator id="tabs" width="100%" height="100%" creationPolicy="all">
+	<mx:HRule width="100%"/>
+	<mx:VBox>
+	<mx:ControlBar width="100%">
+		<mx:Button label="Record" mouseDown="if (btnRecord.selected) stopRecording()" click="if (btnRecord.selected) startRecording()" toggle="true" id="btnRecord" />
+	</mx:ControlBar>
+	<mx:TabNavigator id="tabs" width="{.9*width}" height="{.8*height}" creationPolicy="all">
 
 		<mx:VBox label="Command List" width="100%" height="100%">
-			<mx:HRule width="100%"/>
-			<mx:HBox>
+			<mx:ControlBar width="100%">
 				<mx:Button label="Run" click="runSelected(event)"/>
-				<mx:Button label="Clear" click="commands.removeAll()"/>	
-				<mx:CheckBox id="editEnabled" label="Enable editing"/>			
-			</mx:HBox>		
-			<mx:HRule width="100%"/>
-			<mx:DataGrid editable="{editEnabled.selected}" id="cmdGrid" x="10" y="10" width="100%" height="100%" dataProvider="{commands}" allowMultipleSelection="true" allowDragSelection="true">
+				<mx:Button label="Clear" click="commands.removeAll()"/>
+				<mx:Button id="btnFlexSpy" label="FlexSpy" click="FlexSpy.show()"  textAlign="center"/>
+				<mx:CheckBox id="editEnabled" label="Enable editing"/>
+			</mx:ControlBar>
+			<mx:DataGrid editable="{editEnabled.selected}" id="cmdGrid" x="10" y="10" height="{.6*height}" width="{.8*width}" dataProvider="{commands}" allowMultipleSelection="true" allowDragSelection="true" rowCount="20">
 				<mx:columns>
 					<mx:DataGridColumn headerText="" width="40" editable="false"/>
 					<mx:DataGridColumn headerText="" width="20">
@@ -321,23 +314,18 @@
 				</mx:columns>
 			</mx:DataGrid>
 		</mx:VBox>
-		<mx:Canvas label="Source" width="100%" height="100%" show="showSource(event)">
+		<mx:VBox label="Source" width="100%" height="100%" show="showSource(event)">
+			<mx:Text text="The source below will replay the recorded commands. Source is generated for commands selected in the Command list."/>
 			<mx:TextArea id="source"  width="100%" height="100%" x="0"/>
-		</mx:Canvas>			
-		<mx:VBox label="Tests">
-			<mx:HRule width="100%"/>
-			<mx:Button label="Run" click="runTests()"/>
-			<mx:HRule width="100%"/>	
-			<mx:DataGrid id="testGrid" x="10" y="10" width="100%" height="100%" dataProvider="{tester.tests}" allowMultipleSelection="true" allowDragSelection="true">
-				<mx:columns>
-					<mx:DataGridColumn headerText="" dataField="select" width="20"/>							
-					<mx:DataGridColumn headerText="Test" dataField="desc"/>
-					<mx:DataGridColumn headerText="Result" dataField="result"/>					
-					<mx:DataGridColumn headerText="Messages" dataField="msg"/>
-				</mx:columns>
-			</mx:DataGrid>
-		</mx:VBox>		
-	
+		</mx:VBox>					
+		<mx:VBox label="FlexUnit" height="{.7*height}" width="{.9*width}">
+			<mx:ControlBar width="100%">
+			<mx:Button label="Run" click="run()"/>
+			</mx:ControlBar>
+	    	<flexui:TestRunnerBase id="testRunner" height="{.6*height}" width="{.8*width}" />	    	
+	    </mx:VBox>
 	</mx:TabNavigator>
+		
+	</mx:VBox>
 
 </aggro:CollapsableTitleWindow>
