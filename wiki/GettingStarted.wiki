@@ -1,4 +1,5 @@
 #summary Getting Started With FlexMonkey
+#labels Featured
 
 = Preparing your application for testing =
 
