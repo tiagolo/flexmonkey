@@ -1,3 +1,4 @@
 #summary FlexMonkey Tutorial.
 
 = Coming Soon! =
+In the meantime, download the [http://code.google.com/p/flexmonkey/downloads/list FlexMonkey.zip] and check out the included sample application.
