@@ -13,11 +13,11 @@ Add FlexMonkey.swc to the compile path of the Flex app you want to test and reco
 
 If you're using Flex Builder, make sure the *Framework Linkage* on the *Flex Build Path* Library tab is set to *Merged into Code*. This will ensure that the swc's are merged into your application swf file. *automation_agent.swc* and *automation.swc* provide the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex automation API] required by FlexMonkey.
 
-Copy the file *FlexMonkeyEnv.xml* to the folder containing the swf of the rebuilt application.
+Copy the file *!FlexMonkeyEnv.xml* to the folder containing the swf of the rebuilt application.
 
 = Starting FlexMonkey =
 
-Start your appliction. FlexMonkey is a Flex Mixin class and it launches itself when it's class is loaded. The compiler options above ensure that FlexMonkey is linked into your test app and that it gets loaded when your app runs.
+Start your appliction. FlexMonkey is a Flex [http://nondocs.blogspot.com/2007/04/metadatamixin.html Mixin] class (just for the purpose of static initialization) and it launches itself when its class is loaded. The compiler options above ensure that FlexMonkey is linked into your test app and that it gets loaded when your app runs.
 
 = Using FlexMonkey =
 
