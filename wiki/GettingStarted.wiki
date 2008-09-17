@@ -2,7 +2,7 @@
 
 = Preparing your application for testing =
 
-Build FlexMonkey from source, or [http://flexmonkey.googlecode.com/files download it]. Then configure FlexMonkey as follows.
+Build FlexMonkey from source, or [http://code.google.com/p/flexmonkey/downloads/list download it]. Then configure FlexMonkey as follows.
 
 Add FlexMonkey.swc to the compile path of the Flex app you want to test and recompile it with the following additional Flex compiler options:
 
