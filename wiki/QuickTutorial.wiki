@@ -95,10 +95,8 @@ package test
 
 }}}
 
-We have to tell !FlexUnit that the test is asynchronous. After Flexmonkey completes running a command list, he dispatches a READY_FOR_VALIDATION event. We use !FlexUnit !TestCase's addAsync method to tell !FlexUnit that our READY_FOR_VALIDATION event handler's completion signals that the test has passed (unless of course one of our assertions fails). (Learn [http://www.adobe.com/cfusion/communityengine/index.cfm?event=showdetails&productId=2&postId=6882 more about asynchrounous testing with !FlexUnit]).
+We have to tell !FlexUnit that the test is asynchronous. After Flexmonkey completes running a command list, he dispatches a READY_FOR_VALIDATION event. We use !FlexUnit !TestCase's addAsync method to tell !FlexUnit that our READY_FOR_VALIDATION event handler's completion signals that the test has passed (unless of course one of our assertions fails). (Learn [http://www.adobe.com/cfusion/communityengine/index.cfm?event=showdetails&productId=2&postId=6882 more] about asynchrounous testing with !FlexUnit).
 
 {{{
 		FlexMonkey.theMonkey.addEventListener(MonkeyEvent.READY_FOR_VALIDATION, addAsync(verifySomething, 10000);
 }}}
-
-
