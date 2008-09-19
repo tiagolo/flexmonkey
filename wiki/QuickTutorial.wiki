@@ -143,12 +143,22 @@ The FlexAutomationAPI dispatches [http://livedocs.adobe.com/flex/3/langref/index
   # id
   # automationID
 
-Many (most?) Flex components generate an automationName using some logically identifying value. A Button, for example, has a default automationName set to its label. The FlexAutomationAPI generates an [http://livedocs.adobe.com/flex/3/langref/index.htmlAutomationID] for every component, so every recorded command is guaranteed to provide an identifier value. automationID's are however derived by serializing the component tree from the component back to the root, and is therefore a very long and very unreadable string. If you want your tests to be readable and (human) modifiable, you will want to assign components id's or automationNames. Alternatively, you can modify a command to use a specific property-value pair.
+Many (most?) Flex components generate an automationName using some logically identifying value. A Button, for example, has a default automationName set to its label. The FlexAutomationAPI generates an [http://livedocs.adobe.com/flex/3/langref/index.html AutomationID] for every component, so every recorded command is guaranteed to provide an identifier value. automationID's are however derived by serializing the component tree from the component back to the root, and is therefore a very long and very unreadable string. If you want your tests to be readable and (human) modifiable, you will want to assign components id's or automationNames. Alternatively, you can modify a command to use a specific property-value pair, as described below.
 
+= Modifying Recorded Commands =
+
+Clicking the *Enable editing* checkbox will allow you to modify the recorded commands. You can change the Value and Property columns to any property-value pair you want to use to identify the component. Flexmonkey will return the first component found containing the pair, and the search order is indeterminate. You can limit the search to the children of a component identified by the Container Value and Container Property columns. If no Container values are specified, the search considers all components. (Specifically, all "raw" descendants of the [http://livedocs.adobe.com/flex/2/langref/mx/managers/SystemManager.html SystemManager).
+
+= Understanding !FlexCommands =
+
+
+
+= Adding Pauses to your Script =
+
+By default, Flexmonkey pauses 5 seconds between command invocations during playback. 
 
 
 
 
 
  
-
