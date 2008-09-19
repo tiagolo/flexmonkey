@@ -14,13 +14,13 @@ The sample consists of the following components:
 
 When you launch the !MonkeyExample.mxml application, its application window opens, and the FlexMonkey window opens automatically (Learn [GettingStarted more] about how Flexmonkey starts itself). You can move and resize the Flexmonkey window as necessary to work with the contact manager app beneath it.
 
-= ScreenShot =
+http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot2.png
 
 = Recording a Script =
 
 Click the Record toggle button at the top of the screen. Now play around with the contact manager, which although primitive, offers a variety of UI gestures you can record. In addition to typing in the form, you can edit rows after they've been added to the grid, and the Phone Type field has a !ComboBox itemEditor. !Flexmonkey will faithfully record all UI events (many events such as mousemoves are filtered by default). Flexmonkey displays each recorded event as a command in the Command List. Clicking anywhere in the Flexmonkey window will stop recording.
 
-= ScreenShot =
+http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot1.png
 
 = Playing Back a Script =
 
@@ -32,13 +32,13 @@ You can play subsets of commands from the list by selecting them in the grid and
 
 Click on the FlexUnit TestCase tab to view the generated source code. Two methods are generated, the first calls !FlexMonkey.runCommands passing it an array of !FlexCommands generated from the Flexmonkey Command List. The second method contains a stub method where you would write actual validation code specific to what's being tested by the command sequence. You can copy and paste this code into a !FlexUnit !TestCase and add it to any !FlexUnit !TestSuite. 
 
-= ScreenShot =
+http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot3.png
 
 Two methods are generated, the first calls !FlexMonkey.runCommands passing it an array of !FlexCommands generated from the Flexmonkey *Command List*. The second method contains is a stub where you would write actual validation code specific to verifying the expected outcome of the script (as explained below). You can copy and paste this code into a !FlexUnit !TestCase and add it to any !FlexUnit !TestSuite. 
 
 Click the *Show completeTestCase* checkbox and a complete !FlexUnit !TestCase will be generated.
 
-= ScreenShot =
+http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot4.png
 
 After you copy and paste the generated code into an !ActionScript source file and add testing validations, you can rebuild the app (including the Flexmonkey swc) and restart. The sample swf [download] already has a !FlexUnit test linked in, and its source can be found in the test.FlexUnitTests.as source file. You can run the test by clicking on the *!FlexUnit Runner*
 
@@ -134,6 +134,31 @@ You can then examine component properties to determine if the script has produce
 }}}
 
 The testSomething method adds a row to the table and we're checking that the columns in its first row have the expected name and phone type, "Fred" and "Work".
+
+You must register your test class with !FlexUnit. A convenient way to do this is using defining a static initializer using the Flex Mixin metadata tag.
+
+[[[
+	[Mixin]
+	public class FlexUnitTests extends TestCase
+	{
+      public static function init(root:DisplayObject) : void {
+     	FlexMonkey.addTestSuite(FlexUnitTests);
+	}
+]]]
+
+The init() method will be called when the class is loaded. You must explicitly reference your test class when you compile, using the "includes" compiler option:
+
+[[[
+-includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc" ...
+]]]
+
+(Learn [-includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc"  more] about linking libraries)
+
+= Running !FlexUnit Tests =
+
+After you've finished editing your !TestCase, rebuild and restart your app. Click on the *FlexUnit Runner* tab and click the *Run* button. Any tests that have been registered will be run.
+
+http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot5.png
 
 = Understanding Recorded Commands =
 
