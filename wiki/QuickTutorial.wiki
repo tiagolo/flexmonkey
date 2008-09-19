@@ -1,4 +1,5 @@
 #summary FlexMonkey Tutorial.
+#labels Featured
 
 = Running the Sample Application =
 
