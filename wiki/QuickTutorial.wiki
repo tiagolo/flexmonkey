@@ -138,20 +138,20 @@ The testSomething method adds a row to the table and we're checking that the col
 
 You must register your test class with !FlexUnit. A convenient way to do this is using defining a static initializer using the Flex Mixin metadata tag.
 
-[[[
+{{{
 	[Mixin]
 	public class FlexUnitTests extends TestCase
 	{
       public static function init(root:DisplayObject) : void {
      	FlexMonkey.addTestSuite(FlexUnitTests);
 	}
-]]]
+}}}
 
 The init() method will be called when the class is loaded. You must explicitly reference your test class when you compile, using the "includes" compiler option:
 
-[[[
+{{{
 -includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc" ...
-]]]
+}}}
 
 (Learn [-includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc"  more] about linking libraries)
 
