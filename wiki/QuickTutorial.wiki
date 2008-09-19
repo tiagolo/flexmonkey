@@ -151,12 +151,19 @@ Clicking the *Enable editing* checkbox will allow you to modify the recorded com
 
 = Understanding !FlexCommands =
 
-
+NeedsContent
 
 = Adding Pauses to your Script =
 
-By default, Flexmonkey pauses 5 seconds between command invocations during playback. 
+By default, Flexmonkey pauses 5 seconds between command invocations during playback.
 
+ToBeContinued
+
+= Calling Functions from Your Script =
+
+NeedsContent
+
+= Contributing to Flexmonkey =
 
 
 
