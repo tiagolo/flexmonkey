@@ -13,4 +13,4 @@ http://code.google.com/p/fxspy/
 
 == What is AutoQuick? ==
 
-AutoQuick is a sample application from Adobe demonstrating the use of the Automation API. FlexMonkey is built on top of a slightly modified version of AutoQuick. (Lear [http://www.adobe.com/devnet/flex/samples/custom_automated/ more).
+AutoQuick is a sample application from Adobe demonstrating the use of the Automation API. FlexMonkey is built on top of a slightly modified version of AutoQuick. (Learn [http://www.adobe.com/devnet/flex/samples/custom_automated/ more]).
