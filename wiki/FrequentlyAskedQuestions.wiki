@@ -4,12 +4,16 @@
 == Why do I get the message "License not present. With the trial version only limited records are allowed"? ==
 Flex Builder Standard edition provides a trial license of the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex Automation API], which is the underlying mechanism used by FlexMonkey. Adobe does not currently seem to publicly document just exactly what limitations are imposed by the trial license. Flex Builder Professional provides a full license of the Flex Automation API. Hopefully Adobe will open source the Flex Automation API sometime soon....
 
-== Where can I get the source for aggro.swc? ==
+== Where can I get the source for aggro.swc ==
 aggro.swc provides the CollapsableTitleWindow component for FlexMonkey. You can download the source from http://www.adobe.com/cfusion/exchange/index.cfm?event=extensionDetail&extid=1682522.
 
 == Where can I get the source for FlexSpy ==
 
 http://code.google.com/p/fxspy/
+
+== Where can I get te source for FlexUnit ==
+
+http://opensource.adobe.com/wiki/display/flexunit/FlexUnit
 
 == What is AutoQuick? ==
 
