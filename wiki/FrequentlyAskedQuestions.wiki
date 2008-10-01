@@ -1,0 +1,6 @@
+#summary FAQ
+
+== Why do I get the message "License not present. With the trial version only limited records are allowed"? ==
+Flex Builder Standard edition provides a trial license of the Flex Automation API, which is the underlying mechanism used by FlexMonkey. Adobe does not currently seem to publicly document just exactly what limitations are imposed by the trail license.
+
+Flex Builder Professional provides a full license of the Flex Automation API.
