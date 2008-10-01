@@ -1,7 +1,7 @@
 #summary FAQ
 #labels Featured
 
-== Where is the FlexMonkey Discussion Board?
+== Where is the FlexMonkey Discussion Board? ==
 
 http://groups.google.com/group/flexmonkey
 
