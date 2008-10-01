@@ -4,3 +4,6 @@
 Flex Builder Standard edition provides a trial license of the Flex Automation API, which is the underlying mechanism used by FlexMonkey. Adobe does not currently seem to publicly document just exactly what limitations are imposed by the trail license.
 
 Flex Builder Professional provides a full license of the Flex Automation API.
+
+== Where can I get the source for aggro.swc? ==
+aggro.swc provides the CollapsableTitleWindow component for FlexMonkey. You can download the source from http://www.adobe.com/cfusion/exchange/index.cfm?event=extensionDetail&extid=1682522.
