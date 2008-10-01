@@ -1,6 +1,10 @@
 #summary FAQ
 #labels Featured
 
+== Where is the FlexMonkey Discussion Board?
+
+http://groups.google.com/group/flexmonkey
+
 == Why do I get the message "License not present. With the trial version only limited records are allowed"? ==
 Flex Builder Standard edition provides a trial license of the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex Automation API], which is the underlying mechanism used by FlexMonkey. Adobe does not currently seem to publicly document just exactly what limitations are imposed by the trial license. Flex Builder Professional provides a full license of the Flex Automation API. Hopefully Adobe will open source the Flex Automation API sometime soon....
 
