@@ -22,3 +22,7 @@ http://opensource.adobe.com/wiki/display/flexunit/FlexUnit
 == What is AutoQuick? ==
 
 AutoQuick is a sample application from Adobe demonstrating the use of the Automation API. FlexMonkey is built on top of a slightly modified version of AutoQuick. (Learn [http://www.adobe.com/devnet/flex/samples/custom_automated/ more]).
+
+== Why do I get an ioError when I try to load FlexMonkeyEnv.xml? ==
+
+We don't know. Some people have reported encountering this problem but we have been unable to reproduce. FlexMonkeyEnv.xml is embedded in the flexmonkey swc and so should be loadable by FlexMonkey. If you encounter this problem, you might try copying FlexMonkeyEnv.xml (available on the downloads page) to the same directory as the swf you are trying to test. 
