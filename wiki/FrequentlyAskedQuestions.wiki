@@ -25,4 +25,4 @@ AutoQuick is a sample application from Adobe demonstrating the use of the Automa
 
 == Why do I get an ioError when I try to load FlexMonkeyEnv.xml? ==
 
-We don't know. Some people have reported encountering this problem but we have been unable to reproduce. FlexMonkeyEnv.xml is embedded in the flexmonkey swc and so should be loadable by FlexMonkey. If you encounter this problem, you might try copying FlexMonkeyEnv.xml (available on the downloads page) to the same directory as the swf you are trying to test. 
+We don't know. Some people have reported encountering this problem but we have been unable to reproduce. FlexMonkeyEnv.xml is embedded in the flexmonkey swc and so should be loadable by FlexMonkey. If you encounter this problem, you might try copying FlexMonkeyEnv.xml (available on the [http://code.google.com/p/flexmonkey/downloads/list downloads] page) to the same directory as the swf you are trying to test. 
