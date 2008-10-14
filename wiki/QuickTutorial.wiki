@@ -153,7 +153,7 @@ The init() method will be called when the class is loaded. You must explicitly r
 -includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc" ...
 }}}
 
-(Learn [-includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc"  more] about linking libraries)
+(Learn [GettingStarted  more] about linking libraries)
 
 = Running !FlexUnit Tests =
 
