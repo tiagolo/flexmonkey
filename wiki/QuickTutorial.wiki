@@ -136,7 +136,7 @@ You can then examine component properties to determine if the script has produce
 
 The testSomething method adds a row to the table and we're checking that the columns in its first row have the expected name and phone type, "Fred" and "Work".
 
-You must register your test class with !FlexUnit. A convenient way to do this is using defining a static initializer using the Flex Mixin metadata tag.
+You must register your test class with !FlexUnit. A convenient way to do this is defining a static initializer using the Flex Mixin metadata tag.
 
 {{{
 	[Mixin]
@@ -153,7 +153,7 @@ The init() method will be called when the class is loaded. You must explicitly r
 -includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc" ...
 }}}
 
-(Learn [GettingStarted  more] about linking libraries)
+(Learn [http://livedocs.adobe.com/flex/3/html/help.html?content=functest_components2_04.html  more] about linking libraries)
 
 = Running !FlexUnit Tests =
 
