@@ -1,8 +1,6 @@
 #summary FAQ
 #labels Featured
 
-<wiki:toc/>
-
 == Where is the !FlexMonkey Discussion Board? ==
 
 http://groups.google.com/group/flexmonkey
