@@ -26,10 +26,8 @@ Sorry for any inconvenience. The project of course in its very early days and so
 
 = Running FlexMonkey from Ant! =
 
-See the MonkeyExample for a sample.
+Download the sample and see the README.
 
 And watch for the [RunningFromAnt tutorial] which we'll be posting shortly.
-
-
 
 
