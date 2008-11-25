@@ -5,6 +5,10 @@
   * Enhanced support for running FlexMonkey from build systems such as Ant.
   * Easier to use FlexMonkey with FlexUnit as well as non-FlexUnit test runners.
 
+Many folks have requested that we separate the UI from the playback functionality so that tests can be launched from build systems like ant. With 0.5, we've pulled FlexMonkey apart into two pieces. FlexMonkey.swc, which contains the core recording and playback functionality, and FlexMonkeyUI.swc which provides the FlexMonkey window and integrated FlexUnit runner.
+
+The core FlexMonkey.swc has no FlexUnit dependencies and should be straightforward to use for playing back FlexMonkey tests with any Flex testing framework, including those launched from Ant. The sample app includes an example for running FlexMonkey from the FlexUnit JUnitTestRunner which launches from an ant task and communicates results back to the build via a socket.
+
 == _Things you should know before running older FlexMonkey tests with 0.5_: ==
 
 FlexMonkey is now broken out into two separate projects under the trunk.
@@ -29,5 +33,3 @@ Sorry for any inconvenience. The project of course in its very early days and so
 Download the sample and see the README.
 
 And watch for the [RunningFromAnt tutorial] which we'll be posting shortly.
-
-
