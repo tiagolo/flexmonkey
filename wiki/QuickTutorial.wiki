@@ -268,7 +268,7 @@ Here's an example of calling a function within a script:
 
 = Getting help =
 
-Check out the discussion board at http://groups.google.com/group.flexmonkey.
+Check out the discussion board at http://groups.google.com/group/flexmonkey.
 
 = Contributing to Flexmonkey =
 
