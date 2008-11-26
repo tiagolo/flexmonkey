@@ -1,4 +1,23 @@
 #summary Running FlexMonkey tests from Ant
 
-= Coming Soon! =
+= Running FlexMonkey tests from Ant =
 
+In this tutorial, we'll walk through setting up and running FlexMonkey tests to run in from a build system such as [http://ant.apache.org/ Ant]. In this tutorial, we'll be running FlexMonkey using FlexUnit ant tasks to run FlexUnit TestCases, but the process should be analogous for non-FlexUnit based test runners, and non-Ant-based build systems.
+
+This tutorial assumes you already know Ant.
+
+== Overview ==
+
+To run our FlexMonkey tests from Ant, we'll use the *flexunit ant task*, which launches a Flex application and listens for for results reported back from the application over a socket. (Learn [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html more]).
+
+We'll use the JUnitTestRunner to run our FlexUnit tests. JUnitTestRunner is an altnerative to FlexUnit's gui-based runner. Rather than display results in a window, JUnitTestRunner sends them over a socket connection back to the initiating flexunit ant task, which writes them to a directory. The results are formatted using JUnit's standard XML reporting format which means you can use the [http://ant.apache.org/manual/OptionalTasks/junitreport.html junitreport task] to merge your FlexUnit test results with your JUnit results in a single hyperlinked report.
+
+== Installing the flexunit ant task ==
+
+Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html FlexAntTasks-bin.zip], extract FlexAntTasks.jar, and copy it somewhere in Ant's classpath (Learn [http://ant.apache.org/manual/running.html#libs more]). 
+
+== Installing JUnitTestRunner ==
+
+Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html FlexUnitOptional-bin.zip], extract FlexUnitOptional.swc and include it in the build path of the application you will be testing.
+
+== To Be Continued ==
