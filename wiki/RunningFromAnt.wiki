@@ -6,7 +6,7 @@ Before getting started, please review the QuickTutorial.
 
 In this tutorial, we'll walk through setting up and running FlexMonkey tests to run in from a build system such as [http://ant.apache.org/ Ant]. In this tutorial, we'll be running FlexMonkey using FlexUnit ant tasks to run FlexUnit TestCases, but the process should be analogous for non-FlexUnit based test runners, and non-Ant-based build systems.
 
-This tutorial assumes you already know Ant. 
+This tutorial assumes you already know Ant. The sample application included with the FlexMonkey download includes this tutorial's example.
 
 == Overview ==
 
@@ -117,10 +117,50 @@ To communicate with the flexunit ant tasks, we must instead create a JUnitTestRu
           antRunner.run(new TestSuite(FlexUnitTests));
 }}}
 
-The test and verification methods require no changes for running with either the FlexUnit gui or Ant. 
+The test and verification methods require no changes for running with either the FlexUnit gui or Ant.
 
 == Compile your application for testing ==
 
+Recompile your application and include the following compiler arguments:
+
+{{{
+-includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc" "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation.swc" "/Users/sstern/eclipse/gxesvn/MonkeyExample/libs/FlexMonkey.swc"
+}}}
+
+The above is identical to how you would compile your application to launch with the FlexMonkey window, except for one detail. We compile using FlexMonkeyUI.swc instead of FlexMonkey.swc.
+
+If you compile using FlexMonkey.swc rather than FlexMonkeyUI.swc, the FlexMonkey window will open up when Ant launches your application, but your tests will otherwise run normally.
+
+== Create the ant script ==
+
+We launch our tests with the following ant target.
+
+{{{
 
 
-== To Be Continued ==
+ <target name="test" depends="compile">						
+	<flexunit
+		
+		timeout="0"
+		verbose="true"
+		swf="${some.swf}"
+		toDir="${report.dir}"
+		haltonfailure="false" />	
+	
+	<junitreport todir="${report.dir}">
+	  <fileset dir="${report.dir}">
+	     <include name="TEST-*.xml"/>
+	  </fileset>
+			
+	  <report format="frames" todir="${report.dir}/flex"/>
+		
+	</junitreport>	
+ </target>
+	
+}}}
+
+This target launches the specified swf, and because the swf has been linked with our TestCase, our static init method gets called and our tests are run by JUnitTestRunner which reports the results back to the ant task, which writes the results to the _toDir_.
+
+== View the results ==
+
+The junitreport task formats our test results in exactly the same way it formats junit results.
