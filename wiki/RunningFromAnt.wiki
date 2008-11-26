@@ -80,4 +80,47 @@ package test
 	}   }
 }
 
+}}}
+
+The only difference between the above test and one launched from the FlexMonkey window is the init method. Let's take a closer look.
+
+{{{
+
+
+        [Mixin]
+        public class FlexUnitTests extends TestCase
+        {
+      public static function init(root:DisplayObject) : void {
+       root.addEventListener(FlexEvent.APPLICATION_COMPLETE, function():void {
+        // To run with the FlexMonkey UI
+        // FlexMonkey.addTestSuite(FlexUnitTests);
+
+
+        // To run without the FlexMonkeyUI, use the lines below instead of the ones above (and link FlexMonkey.swc instead of FlexMonkeyUI.swc)
+           var  antRunner:JUnitTestRunner = new JUnitTestRunner();
+           antRunner.run(new TestSuite(FlexUnitTests));
+       });  
+}}}
+
+(Recall that because it's a Mixin class, the static init method is invoked automatically by the Flex system manager at application startup time.)
+
+To run in the FlexMonkey window, we add the tests using FlexMonkey's static api.
+
+{{{ 
+           FlexMonkey.addTestSuite(FlexUnitTests); 
+}}}
+
+To communicate with the flexunit ant tasks, we must instead create a JUnitTestRunner instance, and invoke its run method.
+
+{{{
+          var  antRunner:JUnitTestRunner = new JUnitTestRunner();
+          antRunner.run(new TestSuite(FlexUnitTests));
+}}}
+
+The test and verification methods require no changes for running with either the FlexUnit gui or Ant. 
+
+== Compile your application for testing ==
+
+
+
 == To Be Continued ==
