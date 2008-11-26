@@ -163,8 +163,14 @@ You must register your test class with !FlexUnit. A convenient way to do this is
 The init() method will be called when the class is loaded. You must explicitly reference your test class when you compile, using the "includes" compiler option:
 
 {{{
--includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc" ...
+-includes test.FlexUnitTests 
 }}}
+
+and don't forget you still need the include-libraries option as well:
+
+{{{
+-includes test.FlexUnitTests -include-libraries "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_agent.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation.swc" "/YOUR_APP_LIBS/FlexMonkeyUI.swc"
+}}
 
 (Learn [http://livedocs.adobe.com/flex/3/html/help.html?content=functest_components2_04.html  more] about linking libraries)
 
