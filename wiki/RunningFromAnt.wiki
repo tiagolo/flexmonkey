@@ -1,4 +1,5 @@
 #summary Running FlexMonkey tests from Ant
+#labels Featured
 
 = Running FlexMonkey tests from Ant =
 
