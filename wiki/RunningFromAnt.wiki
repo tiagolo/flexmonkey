@@ -134,10 +134,12 @@ If you compile using FlexMonkey.swc rather than FlexMonkeyUI.swc, the FlexMonkey
 
 == Create the ant script ==
 
-We launch our tests with the following ant target.
+We launch our tests with the following ant target. Note that you need to include a taskdef for flexunit.
 
 {{{
 
+ <!-- Load the flexunit task definitions. -->
+ <taskdef resource="com/adobe/ac/ant/tasks/tasks.properties" />
 
  <target name="test" depends="compile">						
 	<flexunit
@@ -161,6 +163,12 @@ We launch our tests with the following ant target.
 }}}
 
 This target launches the specified swf, and because the swf has been linked with our TestCase, our static init method gets called and our tests are run by JUnitTestRunner which reports the results back to the ant task, which writes the results to the _toDir_.
+
+If you get an error finding com/adobe/ac/ant/tasks/tasks.properties, you can specify its location explicitly instead:
+
+{{{
+ <taskdef resource="com/adobe/ac/ant/tasks/tasks.properties" classpath="/path/to/FlexAntTasks.jar">
+}}}
 
 == View the results ==
 
