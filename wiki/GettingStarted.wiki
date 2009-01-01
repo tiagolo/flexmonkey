@@ -1,13 +1,15 @@
 #summary Getting Started With FlexMonkey
 #labels Featured,Phase-Deploy
 
-= Using !FlexMonkeyLauncher to Start an App to be Tested= 
+= Starting a FlexMonkey Session = 
 
-!FlexMonkeyLauncher lets you record and playback !FlexMonkey tests for a swf. With !FlexMonkeyLauncher, it is no longer necessary to compile your app with the !FlexMonkey and automation libraries.
+Use !FlexMonkeyLauncher to record and playback !FlexMonkey tests for a swf.
 
-Copy *!FlexMonkeyLauncher.swf* to the directory containing the swf you want to test. _Please note:_ The launcher *must* be run from the same directory as the swf to be tested. Copy *!RunTests.html* from the *wrapper* directory to this directory as well, and edit it so that it references the swf to be tested.
+[http://code.google.com/p/flexmonkey/downloads/list Download] and expand !FlexMonkey.0.6.zip. 
 
-For example, to record UI interactions for !MonkeyContacts.swf:
+Copy *!FlexMonkeyLauncher.swf* from the *build* directory to the directory containing the swf you want to test. _Please note:_ The launcher *must* be run from the same directory as the swf to be tested. Copy *!RunTests.html* from the *wrapper* directory to this directory as well, and edit it so that it references the swf to be tested.
+
+For example, to record UI interactions for !MonkeyContacts.swf, RunTests.html should look similar to the following:
 
 {{{
 <html>
@@ -47,11 +49,11 @@ body { margin: 0px;
 
 }}}
 
-Open your modified !RunTests.html in a browser. Once your swf is loaded, you can record and playback UI interactions.
+Open your modified !RunTests.html in a browser. Once your swf is loaded, you can start recording UI interactions by hitting the *Record* button. You can playback interactions by hitting the *Play* button on the *Command List* tab.
 
 = Learning More About FlexMonkey =
 
-See the QuickTutorial.
+To learn more, including creating replayable test scripts, and running from Ant, see the QuickTutorial.
 
 = Getting More Information on the Flex Automation API =
 
