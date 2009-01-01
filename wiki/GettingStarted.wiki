@@ -1,6 +1,7 @@
 #summary Getting Started With FlexMonkey
 #labels Featured,Phase-Deploy
 
+= Using !FlexMonkeyLauncher to Start the App to be Tested= 
 
 !FlexMonkeyLauncher lets you record and playback !FlexMonkey tests for a swf. With !FlexMonkeyLauncher, it is no longer necessary to compile your app with the !FlexMonkey and automation libraries.
 
@@ -12,7 +13,7 @@ For example, to record UI interactions for !MonkeyContacts.swf:
 <html>
 <!-- 
 
-Customize this file to pass arguments to !FlexMonkeyLauncher:
+Customize this file to pass arguments to FlexMonkeyLauncher:
 
 targetSwf (required) - The name of the swf to be tested. It must reside in the same directory as FlexMonkeyLauncher.
 testSwf - The name of the swf continaing your tests. It also must reside in the same place as FlexMonkeyLauncher.
