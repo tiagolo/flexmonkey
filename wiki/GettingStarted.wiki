@@ -1,6 +1,8 @@
 #summary Getting Started With FlexMonkey
 #labels Featured,Phase-Deploy
 
+_Updated for FlexMonkey 0.6. To run with 0.5, see the [GettingStartedWithZeroDotFive old setup instructions]_
+
 = Starting a FlexMonkey Session = 
 
 Use !FlexMonkeyLauncher to record and playback !FlexMonkey tests for a swf.
