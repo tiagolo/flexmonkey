@@ -2,17 +2,17 @@
 #labels Featured,Phase-Deploy
 
 
-FlexMonkeyLauncher lets you record and playback FlexMonkey tests for a swf. With FlexMonkeyLauncher, it is no longer necessary to compile your app with the FlexMonkey and automation libraries.
+!FlexMonkeyLauncher lets you record and playback !FlexMonkey tests for a swf. With !FlexMonkeyLauncher, it is no longer necessary to compile your app with the !FlexMonkey and automation libraries.
 
-Copy *FlexMonkeyLauncher.swf* to the directory containing the swf you want to test. _Please note:_ The launcher *must* be run from the same directory as the swf to be tested. Copy *RunTests.html* from the *wrapper* directory to this directory as well, and edit it so that it references the swf to be tested.
+Copy *!FlexMonkeyLauncher.swf* to the directory containing the swf you want to test. _Please note:_ The launcher *must* be run from the same directory as the swf to be tested. Copy *!RunTests.html* from the *wrapper* directory to this directory as well, and edit it so that it references the swf to be tested.
 
-For example, to test MonkeyContacts.swf with FlexMonkeyTests.swf:
+For example, to record UI interactions for !MonkeyContacts.swf:
 
 {{{
 <html>
 <!-- 
 
-Customize this file to pass arguments to FlexMonkeyLauncher:
+Customize this file to pass arguments to !FlexMonkeyLauncher:
 
 targetSwf (required) - The name of the swf to be tested. It must reside in the same directory as FlexMonkeyLauncher.
 testSwf - The name of the swf continaing your tests. It also must reside in the same place as FlexMonkeyLauncher.
@@ -20,7 +20,7 @@ visible - If false, the FlexMonkey window will not be displayed
 targetHeight - The height to be set for the targetSwf.
 targetWidth - The width to be set for the targetSwf.
 
-The arguments are passed to FlexMonkeyLauncher as flashvars. See http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html
+The arguments are passed to !FlexMonkeyLauncher as flashvars. See http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html
 to learn more about setting flashvars. flashvars are passed by IE using the "param" tag. Other browsers use the "embed" tag. 
 Specify both if you'll be testing in both browsers.
 
@@ -37,8 +37,8 @@ body { margin: 0px;
 
     <object id='FlexMonkeyRunner' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab' height='100%' width='100%'>
         <param name='src' value='FlexMonkeyLauncher.swf'/>
-        <param name='flashVars' value='targetSwf=MonkeyContacts&testSwf=FlexMonkeyTests&visible=true'/>
-        <embed name='mySwf' src='FlexMonkeyLauncher.swf' pluginspage='http://www.adobe.com/go/getflashplayer' height='100%' width='100%' flashVars='targetSwf=MonkeyContacts&testSwf=FlexMonkeyTests&visible=true'/>
+        <param name='flashVars' value='targetSwf=MonkeyContacts'/>
+        <embed name='mySwf' src='FlexMonkeyLauncher.swf' pluginspage='http://www.adobe.com/go/getflashplayer' height='100%' width='100%' flashVars='targetSwf=MonkeyContacts'/>
     </object>
 
 </body>
@@ -46,11 +46,7 @@ body { margin: 0px;
 
 }}}
 
-Open your modified RunTests.html in a browser. Once your swf is loaded, you can record and playback UI interactions.
-
-= Starting FlexMonkey =
-
-Start your appliction. FlexMonkey is a Flex [http://nondocs.blogspot.com/2007/04/metadatamixin.html Mixin] class (just for the purpose of static initialization) and it launches itself when its class is loaded. The compiler options above ensure that FlexMonkey is linked into your test app and that it gets loaded when your app runs.
+Open your modified !RunTests.html in a browser. Once your swf is loaded, you can record and playback UI interactions.
 
 = Using FlexMonkey =
 
