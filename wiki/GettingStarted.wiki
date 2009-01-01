@@ -1,17 +1,52 @@
 #summary Getting Started With FlexMonkey
 #labels Featured,Phase-Deploy
 
-= Preparing your application for testing =
 
-Build FlexMonkey from source, or [http://code.google.com/p/flexmonkey/downloads/list download it]. Then configure FlexMonkey as follows.
+FlexMonkeyLauncher lets you record and playback FlexMonkey tests for a swf. With FlexMonkeyLauncher, it is no longer necessary to compile your app with the FlexMonkey and automation libraries.
 
-Add FlexMonkey.swc to the compile path of the Flex app you want to test and recompile it with the following additional Flex compiler options:
+Copy *FlexMonkeyLauncher.swf* to the directory containing the swf you want to test. _Please note:_ The launcher *must* be run from the same directory as the swf to be tested. Copy *RunTests.html* from the *wrapper* directory to this directory as well, and edit it so that it references the swf to be tested.
+
+For example, to test MonkeyContacts.swf with FlexMonkeyTests.swf:
 
 {{{
--include-libraries "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_agent.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation.swc" "/YOUR_APP_LIBS/FlexMonkeyUI.swc"
+<html>
+<!-- 
+
+Customize this file to pass arguments to FlexMonkeyLauncher:
+
+targetSwf (required) - The name of the swf to be tested. It must reside in the same directory as FlexMonkeyLauncher.
+testSwf - The name of the swf continaing your tests. It also must reside in the same place as FlexMonkeyLauncher.
+visible - If false, the FlexMonkey window will not be displayed
+targetHeight - The height to be set for the targetSwf.
+targetWidth - The width to be set for the targetSwf.
+
+The arguments are passed to FlexMonkeyLauncher as flashvars. See http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html
+to learn more about setting flashvars. flashvars are passed by IE using the "param" tag. Other browsers use the "embed" tag. 
+Specify both if you'll be testing in both browsers.
+
+ -->
+<head>
+<title>FlexMonkeyLauncher</title>
+<style>
+body { margin: 0px;
+ overflow:hidden }
+</style>
+</head>
+<body scroll='no'>
+
+
+    <object id='FlexMonkeyRunner' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab' height='100%' width='100%'>
+        <param name='src' value='FlexMonkeyLauncher.swf'/>
+        <param name='flashVars' value='targetSwf=MonkeyContacts&testSwf=FlexMonkeyTests&visible=true'/>
+        <embed name='mySwf' src='FlexMonkeyLauncher.swf' pluginspage='http://www.adobe.com/go/getflashplayer' height='100%' width='100%' flashVars='targetSwf=MonkeyContacts&testSwf=FlexMonkeyTests&visible=true'/>
+    </object>
+
+</body>
+</html>
+
 }}}
 
-If you're using Flex Builder, make sure the *Framework Linkage* on the *Flex Build Path* Library tab is set to *Merged into Code*. This will ensure that the swc's are merged into your application swf file. *automation_agent.swc* and *automation.swc* provide the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex automation API] required by FlexMonkey.
+Open your modified RunTests.html in a browser. Once your swf is loaded, you can record and playback UI interactions.
 
 = Starting FlexMonkey =
 
