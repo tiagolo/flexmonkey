@@ -101,7 +101,7 @@ If you get an error finding com/adobe/ac/ant/tasks/tasks.properties, you can spe
 
 == View the results ==
 
-The junitreport task formats our test results in exactly the same way it formats junit results.
+The [http://ant.apache.org/manual/OptionalTasks/junitreport.html junitreport] task formats our test results in exactly the same way it formats junit results.
 
 == Testing apps residing on a server ==
 
