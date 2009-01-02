@@ -192,7 +192,7 @@ We package up the tests into their own swf by invoking them from a (trivial) app
 </mx:Application>
 }}}
 
-As you can see, all this application is doing is adding our tests contained in !FlexUnitTests.as to !FlexMonkey's built-in flexunit runner. We would use a slightly different application for launching tests from ant. (Learn more).
+As you can see, all this application is doing is adding our tests contained in !FlexUnitTests.as to !FlexMonkey's built-in flexunit runner. We would use a slightly different application for launching tests from ant. (Learn [RunningFromAnt more]).
 
 You can use !FlexMonkeyTests.mxml as a template for creating a wrapper application packaging your tests as a separate swf. 
 
