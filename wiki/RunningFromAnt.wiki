@@ -1,19 +1,19 @@
 #summary Running FlexMonkey tests from Ant
 #labels Featured
 
-= Running FlexMonkey tests from Ant =
+= Running !FlexMonkey tests from Ant =
 
 Before getting started, please review the QuickTutorial.
 
-In this tutorial, we'll walk through setting up and running FlexMonkey tests to run in from a build system such as [http://ant.apache.org/ Ant]. In this tutorial, we'll be running FlexMonkey using FlexUnit ant tasks to run FlexUnit TestCases, but the process should be analogous for non-FlexUnit based test runners, and non-Ant-based build systems.
+In this tutorial, we'll walk through setting up and running !FlexMonkey tests to run from a build system such as [http://ant.apache.org/ Ant]. In this tutorial, we'll be running !FlexMonkey using !FlexUnit ant tasks to run !FlexUnit !TestCases, but the process should be analogous for non-FlexUnit based test runners, and non-Ant-based build systems.
 
-This tutorial assumes you already know Ant. The sample application included with the FlexMonkey download includes this tutorial's example.
+This tutorial assumes you already know Ant. The sample application included with the !FlexMonkey [download http://code.google.com/p/flexmonkey/downloads/list] includes this tutorial's example.
 
 == Overview ==
 
-To run our FlexMonkey tests from Ant, we'll use the *flexunit ant task*, which launches a Flex application and listens on a socket for for test results reported back from the launched application. (Learn [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html more]).
+To run our !FlexMonkey tests from Ant, we'll use the *flexunit ant task*, which launches a Flex application and listens on a socket for for test results reported back from the launched application. (Learn [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html more]).
 
-We'll use the !JUnitTestRunner to run our !FlexUnit tests. Although it sounds like a Java thing, !JUnitTestRunner is actionscript-based and provides an altnerative to FlexUnit's gui-based runner. Rather than display results in a window, JUnitTestRunner sends them over a socket connection back to the initiating flexunit ant task, which writes them to a directory. The results are formatted using JUnit's standard XML reporting format which means you can use the [http://ant.apache.org/manual/OptionalTasks/junitreport.html junitreport task] to merge your FlexUnit test results with your JUnit results in a single hyperlinked report.
+We'll use the !JUnitTestRunner to run our !FlexUnit tests. Although it sounds like a Java thing, !JUnitTestRunner is actionscript-based and provides an altnerative to !FlexUnit's gui-based runner. Rather than display results in a window, !JUnitTestRunner sends them over a socket connection back to the initiating flexunit ant task, which writes them to a directory. The results are formatted using !JUnit's standard XML reporting format which means you can use the [http://ant.apache.org/manual/OptionalTasks/junitreport.html junitreport task] to merge your !FlexUnit test results with your !JUnit results in a single hyperlinked report.
 
 == Install the flexunit ant task ==
 
@@ -21,7 +21,7 @@ Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an
 
 == Install JUnitTestRunner ==
 
-Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html FlexUnitOptional-bin.zip], extract FlexUnitOptional.swc and include it in the build path of the swf containing your tests.
+Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html FlexUnitOptional-bin.zip], extract FlexUnitOptional.swc and include it in the build path of the swf containing your tests, which in our example is *!FlexMonkeyTests.swf* located in the build directory.
 
 == Create your Test SWF ==
 
@@ -47,7 +47,7 @@ The only difference between running your tests using !FlexMonkey's built-in !Fle
 
 
 
-To communicate with the flexunit ant task, we must create a JUnitTestRunner instance, and invoke its run method.
+To communicate with the flexunit ant task, we must create a !JUnitTestRunner instance, and invoke its run method, passing it our *!FlexUnitTests* test suite.
 
 {{{
 		           var	antRunner:JUnitTestRunner = new JUnitTestRunner();
@@ -55,6 +55,8 @@ To communicate with the flexunit ant task, we must create a JUnitTestRunner inst
                   	     fscommand("quit");
          		   }); 
 }}}
+
+
 
 The function closure passed to the run method instructs the !JunitTestRunner to quit the application after completing the test.
 
@@ -89,7 +91,7 @@ We launch our tests with the following ant target. Note that you need to include
 }}}
 
 
-Note that the *swf* parameter actually references our html wrapper. Also, remember that the !FlexMonkeyLauncher.swf and our test swf must be located in the same directory as the application we want to test. 
+The *swf* parameter actually references our html wrapper, MonkeyContactsTest.html, rather than the swf itself. 
 
 If you get an error finding com/adobe/ac/ant/tasks/tasks.properties, you can specify its location explicitly instead:
 
@@ -131,4 +133,4 @@ If our test app resides on a server, we simply specify the full url of MonkeyCon
 	
 }}}
 
-And again, remember that !FlexMonkeyLauncher.swf and our test swf need to be located on the server in the same directory as the app we're testing.
+And again, remember that !FlexMonkeyLauncher.swf and our test swf (FlexMonkeyTests.swf) need to be located on the server in the same directory as the app we're testing (MonkeyContacts.swf).
