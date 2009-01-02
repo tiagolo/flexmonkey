@@ -13,7 +13,7 @@ This tutorial assumes you already know Ant. The sample application included with
 
 To run our FlexMonkey tests from Ant, we'll use the *flexunit ant task*, which launches a Flex application and listens on a socket for for test results reported back from the launched application. (Learn [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html more]).
 
-We'll use the JUnitTestRunner to run our FlexUnit tests. Although it sounds like a Java thing, JUnitTestRunner is actionscript-based and provides an altnerative to FlexUnit's gui-based runner. Rather than display results in a window, JUnitTestRunner sends them over a socket connection back to the initiating flexunit ant task, which writes them to a directory. The results are formatted using JUnit's standard XML reporting format which means you can use the [http://ant.apache.org/manual/OptionalTasks/junitreport.html junitreport task] to merge your FlexUnit test results with your JUnit results in a single hyperlinked report.
+We'll use the !JUnitTestRunner to run our !FlexUnit tests. Although it sounds like a Java thing, !JUnitTestRunner is actionscript-based and provides an altnerative to FlexUnit's gui-based runner. Rather than display results in a window, JUnitTestRunner sends them over a socket connection back to the initiating flexunit ant task, which writes them to a directory. The results are formatted using JUnit's standard XML reporting format which means you can use the [http://ant.apache.org/manual/OptionalTasks/junitreport.html junitreport task] to merge your FlexUnit test results with your JUnit results in a single hyperlinked report.
 
 == Install the flexunit ant task ==
 
@@ -21,116 +21,42 @@ Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an
 
 == Install JUnitTestRunner ==
 
-Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html FlexUnitOptional-bin.zip], extract FlexUnitOptional.swc and include it in the build path of the application you will be testing.
+Download [http://weblogs.macromedia.com/pmartin/archives/2007/01/flexunit_for_an_1.html FlexUnitOptional-bin.zip], extract FlexUnitOptional.swc and include it in the build path of the swf containing your tests.
 
-== Create your FlexUnit Test Suite ==
+== Create your Test SWF ==
 
-The only difference between running your tests using FlexMonkey's built-in FlexUnit runner, and running with JUnitTestRunner instead, is the way in which you add your test suite to the runner and how you kick off the tests.
-
-{{{
-package test
-{
-	import com.gorillalogic.flexmonkey.commands.CallCommand;
-	import com.gorillalogic.flexmonkey.commands.CommandRunner;
-	import com.gorillalogic.flexmonkey.commands.FlexCommand;
-	import com.gorillalogic.flexmonkey.core.MonkeyEvent;
-	import com.gorillalogic.flexmonkey.core.MonkeyUtils;
-	import com.gorillalogic.flexmonkey.ui.FlexMonkey;
-	
-	import flash.display.DisplayObject;
-	
-	import flexunit.framework.Assert;
-	import flexunit.framework.TestCase;
-	
-	import mx.collections.ArrayCollection;
-	import mx.controls.DataGrid;
-	import mx.controls.DateField;
-	import mx.events.FlexEvent;
-
-
-	[Mixin]
-	public class FlexUnitTests extends TestCase
-	{
-      public static function init(root:DisplayObject) : void {
-       root.addEventListener(FlexEvent.APPLICATION_COMPLETE, function():void {
-        // To run with the FlexMonkey UI
-     	// FlexMonkey.addTestSuite(FlexUnitTests);
-
-
-        // To run without the FlexMonkeyUI, use the lines below instead of the ones above (and link FlexMonkey.swc instead of FlexMonkeyUI.swc)
-           var	antRunner:JUnitTestRunner = new JUnitTestRunner();
-           antRunner.run(new TestSuite(FlexUnitTests));
-       });        
-	}
-	// Test method
-	public function testSomething():void {
-		var cmdRunner:CommandRunner = new CommandRunner();
-		cmdRunner.addEventListener(MonkeyEvent.READY_FOR_VALIDATION, addAsync(verifySomething, 10000));
-		cmdRunner.runCommands([
-			new FlexCommand("inName", "SelectText", ["0", "0"], "automationName"),
-			new FlexCommand("inName", "Input", ["Fred"], "automationName"),			]);
-
-
-   }
-
-	// Called after commands have been run
-	private function verifySomething(event:MonkeyEvent):void {
-		   var comp:DataGrid = MonkeyUtils.findComponentWith("grid","id") as DataGrid;
-		   Assert.assertEquals("Fred", ArrayCollection(comp.dataProvider).getItemAt(0).name);		   
-
-	}   }
-}
-
-}}}
-
-The only difference between the above test and one launched from the FlexMonkey window is the init method. Let's take a closer look.
+The only difference between running your tests using !FlexMonkey's built-in !FlexUnit runner, and running with !JUnitTestRunner instead, is the way in which you add your test suite to the runner and how you kick off the tests. Our wrapper, FlexMonkeyTests.mxml would look like this in order to run tests from ant instead of from the built-in runner:
 
 {{{
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="create()">
+        <mx:Script>
+                <![CDATA[
+                        import test.FlexUnitTests;
+                        import com.gorillalogic.flexmonkey.ui.FlexMonkey;
+                        public function create():void {
+		           var	antRunner:JUnitTestRunner = new JUnitTestRunner();
+		           antRunner.run(new TestSuite(FlexUnitTests), function():void {
+                  	     fscommand("quit");
+         		   }); 
 
-
-        [Mixin]
-        public class FlexUnitTests extends TestCase
-        {
-      public static function init(root:DisplayObject) : void {
-       root.addEventListener(FlexEvent.APPLICATION_COMPLETE, function():void {
-        // To run with the FlexMonkey UI
-        // FlexMonkey.addTestSuite(FlexUnitTests);
-
-
-        // To run without the FlexMonkeyUI, use the lines below instead of the ones above (and link FlexMonkey.swc instead of FlexMonkeyUI.swc)
-           var  antRunner:JUnitTestRunner = new JUnitTestRunner();
-           antRunner.run(new TestSuite(FlexUnitTests));
-       });  
+                        }
+                ]]>
+        </mx:Script>
+</mx:Application>
 }}}
 
-(Recall that because it's a Mixin class, the static init method is invoked automatically by the Flex system manager at application startup time.)
 
-To run in the FlexMonkey window, we add the tests using FlexMonkey's static api.
 
-{{{ 
-           FlexMonkey.addTestSuite(FlexUnitTests); 
-}}}
-
-To communicate with the flexunit ant tasks, we must instead create a JUnitTestRunner instance, and invoke its run method.
+To communicate with the flexunit ant task, we must create a JUnitTestRunner instance, and invoke its run method.
 
 {{{
-          var  antRunner:JUnitTestRunner = new JUnitTestRunner();
-          antRunner.run(new TestSuite(FlexUnitTests));
+		           var	antRunner:JUnitTestRunner = new JUnitTestRunner();
+		           antRunner.run(new TestSuite(FlexUnitTests), function():void {
+                  	     fscommand("quit");
+         		   }); 
 }}}
 
-The test and verification methods require no changes for running with either the FlexUnit gui or Ant.
-
-== Compile your application for testing ==
-
-Recompile your application and include the following compiler arguments:
-
-{{{
--includes test.FlexUnitTests -include-libraries "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation_agent.swc" "/Applications/Adobe Flex Builder 3/sdks/3.0.0/frameworks/libs/automation.swc" "/Users/sstern/eclipse/gxesvn/MonkeyExample/libs/FlexMonkey.swc"
-}}}
-
-The above is identical to how you would compile your application to launch with the FlexMonkey window, except for one detail. We compile using FlexMonkeyUI.swc instead of FlexMonkey.swc.
-
-If you compile using FlexMonkey.swc rather than FlexMonkeyUI.swc, the FlexMonkey window will open up when Ant launches your application, but your tests will otherwise run normally.
+The function closure passed to the run method instructs the !JunitTestRunner to quit the application after completing the test.
 
 == Create the ant script ==
 
@@ -146,7 +72,7 @@ We launch our tests with the following ant target. Note that you need to include
 		
 		timeout="0"
 		verbose="true"
-		swf="${some.swf}"
+		swf="MonkeyContactsTest.html"
 		toDir="${report.dir}"
 		haltonfailure="false" />	
 	
@@ -162,7 +88,8 @@ We launch our tests with the following ant target. Note that you need to include
 	
 }}}
 
-This target launches the specified swf, and because the swf has been linked with our TestCase, our static init method gets called and our tests are run by JUnitTestRunner which reports the results back to the ant task, which writes the results to the _toDir_.
+
+Note that the *swf* parameter actually references our html wrapper. Also, remember that the !FlexMonkeyLauncher.swf and our test swf must be located in the same directory as the application we want to test. 
 
 If you get an error finding com/adobe/ac/ant/tasks/tasks.properties, you can specify its location explicitly instead:
 
@@ -173,3 +100,35 @@ If you get an error finding com/adobe/ac/ant/tasks/tasks.properties, you can spe
 == View the results ==
 
 The junitreport task formats our test results in exactly the same way it formats junit results.
+
+== Testing apps residing on a server ==
+
+If our test app resides on a server, we simply specify the full url of MonkeyContactsTest.html, for example, http://localhost:8080/myapp/MonkeyContactsTest.html.
+
+{{{
+
+ <!-- Load the flexunit task definitions. -->
+ <taskdef resource="com/adobe/ac/ant/tasks/tasks.properties" />
+
+ <target name="test" depends="compile">						
+	<flexunit
+		
+		timeout="0"
+		verbose="true"
+		swf="http://localhost:8080/myapp/MonkeyContactsTest.html"
+		toDir="${report.dir}"
+		haltonfailure="false" />	
+	
+	<junitreport todir="${report.dir}">
+	  <fileset dir="${report.dir}">
+	     <include name="TEST-*.xml"/>
+	  </fileset>
+			
+	  <report format="frames" todir="${report.dir}/flex"/>
+		
+	</junitreport>	
+ </target>
+	
+}}}
+
+And again, remember that !FlexMonkeyLauncher.swf and our test swf need to be located on the server in the same directory as the app we're testing.
