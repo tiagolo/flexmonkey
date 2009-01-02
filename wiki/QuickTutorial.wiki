@@ -227,6 +227,10 @@ Open !MonkeyContactsTest.html in a browser. Click on the *Test Runner* tab and c
 
 http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot5.png
 
+= Testing Server-based SWF's =
+
+Simply deploy !FlexMonkeyLauncher.swf, the test swf (!FlexMonkeyTests.swf) and the html wrapper (!MonkeyContactsTest.html) to the directory on the server containing the app to be tested (!MonkeyContacts.swf). Then open the wrapper in a browser specifying the full url, for example, `http://localhost:8080/myapp/MonkeyContactsTest.html`.
+
 = Understanding Recorded Commands =
 
 The !FlexAutomationAPI dispatches [http://livedocs.adobe.com/flex/3/langref/index.html AutomationRecordEvent]s containg an event name, an array of argument objects, and a reference to the target component. Flexmonkey checks for the existence of a property value it can use to identify the component on playback. Properties are searched in the following sequence:
