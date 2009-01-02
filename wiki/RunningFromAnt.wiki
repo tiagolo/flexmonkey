@@ -105,7 +105,7 @@ The junitreport task formats our test results in exactly the same way it formats
 
 == Testing apps residing on a server ==
 
-If our test app resides on a server, we simply specify the full url of MonkeyContactsTest.html, for example, http://localhost:8080/myapp/MonkeyContactsTest.html.
+If our test app resides on a server, we simply specify the full url, for example, http://localhost:8080/myapp/MonkeyContactsTest.html.
 
 {{{
 
