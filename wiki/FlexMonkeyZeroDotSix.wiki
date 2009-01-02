@@ -1,3 +1,5 @@
 #summary Introducing FlexMonkey 0.6.
 
 More later...
+
+In the meantime, refer to the [GettingStarted documentation].
