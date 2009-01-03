@@ -34,7 +34,5 @@ To load a swf for testing, copy !FlexMonkeyLauncher.swf to the directory contain
 
 Enter the name of the swf you want to test in the *App to Test* field on the *Setup* tab and click the *Load SWF* button. The application should start and be displayed beneath the flexmonkey window.
 
-
-
-
+To be continued....
 
