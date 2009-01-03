@@ -1,0 +1,40 @@
+#summary FlexMonkey 0.6 User Guide
+
+= Overview of the !FlexMonkey Framework =
+
+Flexmonkey is comprised of two components:
+
+ * *!FlexMonkey.swc* - A library providing the flexmonkey user interface, the recording and playback API, and a !FlexUnit test runner.
+
+ * *!FlexMonkeyLauncher.swf* - An application that launches Flex applications for use with !FlexMonkey. You use the launcher both for recording tests as well as replaying previously recorded tests.
+
+= targetSwfs and testSwfs =
+
+By using the launcher, you can test any application without needing to link it with testing libraries or test case code. You package your test cases into a separate swf (the _testSwf_) that is loaded by the launcher dynamically along with your application (the _targetSwf_). 
+
+= The !FlexMonkey user interface =
+
+The flexmonkey user interface is used to:
+
+ * Load testSwfs and targetSwfs
+ * Record and playback user interactions
+ * Generate source code for creating a testSwf
+
+The interface is organized around the following components:
+
+ * The *Record* button, which toggles on and off the recording of user interactions in the targetSwf.
+ * The *Setup* tab, which can be used to interactively specify targetSwfs and testSwfs for loading, and which displays the currently loaded swf file names.
+ * The *Command List* tab, which displays any captured user interaction commands, and provides for editing captured commands.
+ * The *!TestCase Code* tab, which displays actionscript source generated from captured targetSwf user interactions.
+ * The *!FlexUnit Runner* tab, which contains an embedded flexunit test runner.
+
+= Loading a targetSwf into !FlexMonkey =
+
+To load a swf for testing, copy !FlexMonkeyLauncher.swf to the directory containing the swf you wish to test, then launch !FlexMonkey.swf with the standalone flash player.
+
+Enter the name of the swf you want to test in the *App to Test* field on the *Setup* tab and click the *Load SWF* button. The application should start and be displayed beneath the flexmonkey window.
+
+
+
+
+
