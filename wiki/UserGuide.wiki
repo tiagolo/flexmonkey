@@ -2,7 +2,7 @@
 
 <wiki:toc/>
 
-= Overview of the !FlexMonkey Framework =
+= Overview of the flexmonkey Framework =
 
 Flexmonkey is comprised of two components:
 
@@ -14,7 +14,7 @@ Flexmonkey is comprised of two components:
 
 By using the launcher, you can test any application without needing to link it with testing libraries or test case code. You package your test cases into a separate swf (the _testSwf_) that is loaded by the launcher dynamically along with your application (the _targetSwf_). 
 
-= The !FlexMonkey user interface =
+= The flexmonkey user interface =
 
 The flexmonkey user interface is used to:
 
@@ -30,7 +30,7 @@ The interface is organized around the following components:
  * The *!TestCase Code* tab, which displays actionscript source generated from captured targetSwf user interactions.
  * The *!FlexUnit Runner* tab, which contains an embedded flexunit test runner.
 
-= Loading a targetSwf into !FlexMonkey =
+= Loading a targetSwf into flexmonkey =
 
 To load a swf for testing, copy !FlexMonkeyLauncher.swf to the directory containing the swf you wish to test, then launch !FlexMonkey.swf with the standalone flash player.
 
@@ -65,7 +65,7 @@ Clicking the *Enable editing* checkbox will allow you to modify the recorded com
 
 As an additional aid in developing tests, !FlexMonkey includes [FlexSpy http://code.google.com/p/fxspy/] to allow you to inspect the !UIComponent tree comprising your app. To start !FlexSpy, click on the *!FlexSpy* button on the *!Command List* tab.
 
-= Generating a !FlexUnit Test =
+= Generating a flexunit Test =
 
 Click on the FlexUnit TestCase tab to view the generated source code. Two methods are generated, the first calls !FlexMonkey.runCommands passing it an array of !FlexCommands generated from the Flexmonkey Command List. The second method contains a stub body where you would write actual validation code specific to what's being tested by the command sequence. You can copy and paste this code into a !FlexUnit !TestCase and add it to any !FlexUnit !TestSuite. (With minor modifications, the source can be used with other automated testing suites besides !FlexUnit).
 
@@ -197,7 +197,7 @@ To create your own testSwf wrapper, simply replace *YourTests* in the above code
 
 Add !FlexMonkey.swc (included in the *lib* directory of the example) to your build path to compile the testSwf.
 
-= Passing Parameters to !FlexMonkeyLauncher =
+= Passing Parameters to flexMonkeyLauncher =
 
 In order to automate running !FlexMonkey tests, you can create an html wrapper that starts !FlexMonkeyLauncher and passes it the testSwf and targetSwf names via [http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html flashvars].
 
@@ -253,28 +253,9 @@ See RunningFromAnt.
 
 Simply deploy !FlexMonkeyLauncher.swf, the test swf (!FlexMonkeyTests.swf) and the html wrapper (!MonkeyContactsTest.html) to the directory on the server containing the app to be tested (!MonkeyContacts.swf). Then open the wrapper in a browser specifying the full url, for example, `http://localhost:8080/myapp/MonkeyContactsTest.html`.
 
-= Understanding Recorded Commands =
+= Understanding flexCommands =
 
-The !FlexAutomationAPI dispatches [http://livedocs.adobe.com/flex/3/langref/index.html AutomationRecordEvent]s containg an event name, an array of argument objects, and a reference to the target component. Flexmonkey checks for the existence of a property value it can use to identify the component on playback. Properties are searched in the following sequence:
-
-  # automationName
-  # id
-  # automationID
-
-Many (most?) Flex components generate an automationName using some logically identifying value. A Button, for example, has a default automationName set to its label. The !FlexAutomationAPI generates an [http://livedocs.adobe.com/flex/3/langref/index.html AutomationID] for every component, so every recorded command is guaranteed to provide an identifier value. automationID's are however derived by serializing the component tree from the component back to the root, and is therefore a very long and very unreadable string. If you want your tests to be readable and (human) modifiable, you will want to assign components id's or automationNames. Alternatively, you can modify a command to use a specific property-value pair, as described below.
-
-= Modifying Recorded Commands =
-
-
-You can clear all commands from the lists by clicking the *Clear* button. You can delete individual commands by clicking the delete-icon to the left of each command. Toggling the *Record* button on will add newly recorded commands to the end of the list.
-
-Clicking the *Enable editing* checkbox will allow you to modify the recorded commands. (You cannot currently edit the *Arguments* column). You can change the Value and Property columns to any property-value pair you want to use to identify the component. Flexmonkey will return the first component found containing the pair, and the search order is indeterminate. You can limit the search to the children of a component identified by the Container Value and Container Property columns. If no Container values are specified, the search considers all components. (Specifically, all "raw" descendants of the [http://livedocs.adobe.com/flex/2/langref/mx/managers/SystemManager.html SystemManager]).
-
-As an additional aid in developing tests, !FlexMonkey includes [FlexSpy http://code.google.com/p/fxspy/] to allow you to inspect the !UIComponent tree comprising your app. To start !FlexSpy, click on the *!FlexSpy* button on the *!Command List* tab.
-
-= Understanding !FlexCommands =
-
-Flexmonkey generates FlexCommands from your recorded commands, and you can of course easily change or create them in source code, or generate command sequences programmatically.
+!Flexmonkey generates !FlexCommands from your recorded commands, and you can of course easily change or create them in source code, or generate command sequences programmatically.
 
 {{{
 		/**
