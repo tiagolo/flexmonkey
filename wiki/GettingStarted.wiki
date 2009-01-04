@@ -17,12 +17,19 @@ Open !FlexMonkeyLauncher.swf in the standalone flash player.
 
 Enter the name of the SWF you want to test in the *App to Test* field and hit the *Load SWF* button. The swf should load and be displayed beneath the flexmonkey window.
 
+= Recording =
 
-Click the *Record* button and play with the application. UI interactions will be recorded as commands in the *Command List*. You can playback interactions by hitting the *Play* button on the *Command List* tab. You can replay selected commands by highlighting them and then hitting *Play*.
+Click the *Record* button and play with the application. UI interactions will be recorded as commands in the *Command List*.
 
-The *TestCase Code* tab will contain actionscript code for replaying the recorded commands from a test suite.
+= Playback =
 
-= Learning More About FlexMonkey =
+You can playback interactions by hitting the *Play* button on the *Command List* tab. You can replay selected commands by highlighting them and then hitting *Play*.
+
+= Generating Test Code = 
+
+The *!TestCase Code* tab will contain actionscript code for replaying the recorded commands from a test suite.
+
+= Learning More About !FlexMonkey =
 
 To learn more, including creating replayable test scripts, and running from Ant, see the QuickTutorial.
 
