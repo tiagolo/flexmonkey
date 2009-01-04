@@ -6,7 +6,7 @@ Flexmonkey is comprised of two components:
 
  * *!FlexMonkey.swc* - A library providing the flexmonkey user interface, the recording and playback API, and a !FlexUnit test runner.
 
- * *!FlexMonkeyLauncher.swf* - An application that launches Flex applications for use with !FlexMonkey. You use the launcher both for recording tests as well as replaying previously recorded tests.
+ * *!FlexMonkeyLauncher.swf* - An application that launches Flex applications for use with !FlexMonkey. You use the launcher both for creating new tests as well as replaying previously recorded tests.
 
 = targetSwfs and testSwfs =
 
