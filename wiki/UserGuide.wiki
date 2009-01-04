@@ -1,5 +1,7 @@
 #summary FlexMonkey 0.6 User Guide
 
+<wiki:toc/>
+
 = Overview of the !FlexMonkey Framework =
 
 Flexmonkey is comprised of two components:
