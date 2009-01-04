@@ -3,55 +3,24 @@
 
 _Updated for FlexMonkey 0.6. To run with 0.5, see the [GettingStartedWithZeroDotFive old setup instructions]_
 
-= Starting a FlexMonkey Session = 
-
-Use !FlexMonkeyLauncher to record and playback !FlexMonkey tests for a swf.
+= Getting !FlexMonkey 0.6 =
 
 [http://code.google.com/p/flexmonkey/downloads/list Download] and expand !FlexMonkey.0.6.zip. 
 
-Copy *!FlexMonkeyLauncher.swf* from the *build* directory to the directory containing the swf you want to test. _Please note:_ The launcher *must* be run from the same directory as the swf to be tested. Copy *!RunTests.html* from the *wrapper* directory to this directory as well, and edit it so that it references the swf to be tested.
+= Starting a !FlexMonkey Session = 
 
-For example, to record UI interactions for !MonkeyContacts.swf, RunTests.html should look similar to the following:
+You use !FlexMonkeyLauncher to record and playback !FlexMonkey tests for a swf.
 
-{{{
-<html>
-<!-- 
+Copy *!FlexMonkeyLauncher.swf* from the *build* directory to the directory containing the swf you want to test.
 
-Customize this file to pass arguments to FlexMonkeyLauncher:
+Open !FlexMonkeyLauncher.swf in the standalone flash player.
 
-targetSwf (required) - The name of the swf to be tested. It must reside in the same directory as FlexMonkeyLauncher.
-testSwf - The name of the swf continaing your tests. It also must reside in the same place as FlexMonkeyLauncher.
-visible - If false, the FlexMonkey window will not be displayed
-targetHeight - The height to be set for the targetSwf.
-targetWidth - The width to be set for the targetSwf.
-
-The arguments are passed to !FlexMonkeyLauncher as flashvars. See http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html
-to learn more about setting flashvars. flashvars are passed by IE using the "param" tag. Other browsers use the "embed" tag. 
-Specify both if you'll be testing in both browsers.
-
- -->
-<head>
-<title>FlexMonkeyLauncher</title>
-<style>
-body { margin: 0px;
- overflow:hidden }
-</style>
-</head>
-<body scroll='no'>
+Enter the name of the SWF you want to test in the *App to Test* field and hit the *Load SWF* button. The swf should load and be displayed beneath the flexmonkey window.
 
 
-    <object id='FlexMonkeyRunner' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab' height='100%' width='100%'>
-        <param name='src' value='FlexMonkeyLauncher.swf'/>
-        <param name='flashVars' value='targetSwf=MonkeyContacts'/>
-        <embed name='mySwf' src='FlexMonkeyLauncher.swf' pluginspage='http://www.adobe.com/go/getflashplayer' height='100%' width='100%' flashVars='targetSwf=MonkeyContacts'/>
-    </object>
+Click the *Record* button and play with the application. UI interactions will be recorded as commands in the *Command List*. You can playback interactions by hitting the *Play* button on the *Command List* tab. You can replay selected commands by highlighting them and then hitting *Play*.
 
-</body>
-</html>
-
-}}}
-
-Open your modified !RunTests.html in a browser. Once your swf is loaded, you can start recording UI interactions by hitting the *Record* button. You can playback interactions by hitting the *Play* button on the *Command List* tab.
+The *TestCase Code* tab will contain actionscript code for replaying the recorded commands from a test suite.
 
 = Learning More About FlexMonkey =
 
