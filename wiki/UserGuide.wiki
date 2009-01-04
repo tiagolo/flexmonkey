@@ -165,3 +165,30 @@ You can then examine component properties to determine if the script has produce
 
 The testSomething method adds a row to the table and we're checking that the columns in its first row have the expected name and phone type, "Fred" and "Work".
 
+
+= Packaging your tests as a SWF =
+
+We can package the tests in their own swf so that they're run by !FlexMonkey without being linked directly into your application swf. In this way, no test code gets included with your deployed application.
+
+We package up the tests into their own swf by invoking them from the (trivial) application such as the following:
+
+{{{
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="create()">
+	<mx:Script>
+		<![CDATA[
+			import test.YourTests;
+			import com.gorillalogic.flexmonkey.ui.FlexMonkey;
+			public function create():void {
+			   // Run with the FlexMonkey's built-in testrunner
+		     	   FlexMonkey.addTestSuite(YourTests);
+
+			}
+		]]>
+	</mx:Script>
+</mx:Application>
+}}}
+
+To create your own testSwf wrapper, simply replace *YourTests* in the above code with an actual reference to your !FlexUnit test suite.
+
+Add !FlexMonkey.swc (included in the *lib* directory of the example) to your build path to compile the testSwf.
+
