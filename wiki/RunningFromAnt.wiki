@@ -5,7 +5,7 @@
 
 Before getting started, please review the QuickTutorial.
 
-In this tutorial, we'll walk through setting up and running !FlexMonkey tests to run from a build system such as [http://ant.apache.org/ Ant]. In this tutorial, we'll be running !FlexMonkey using !FlexUnit ant tasks to run !FlexUnit !TestCases, but the process should be analogous for non-FlexUnit based test runners, and non-Ant-based build systems.
+In this tutorial, we'll walk through setting up and running !FlexMonkey tests to run from [http://ant.apache.org/ Ant]. In this tutorial, we'll be running !FlexMonkey using !FlexUnit ant tasks to run !FlexUnit !TestCases, but the process should be analogous for non-FlexUnit based test runners, and non-Ant-based build systems.
 
 This tutorial assumes you already know Ant. The sample application included with the !FlexMonkey [download http://code.google.com/p/flexmonkey/downloads/list] includes this tutorial's example.
 
@@ -134,3 +134,15 @@ If our test app resides on a server, we simply specify the full url, for example
 }}}
 
 And again, remember that !FlexMonkeyLauncher.swf and our test swf (FlexMonkeyTests.swf) need to be located on the server in the same directory as the app we're testing (MonkeyContacts.swf).
+
+= Running Build.xml in the Example =
+
+Copy build.properties.template to a new file called build.properties and update *flex.home* and *flex.ant.loc* to point to your local installation locations. Edit *FlexMonkeyTests.mxml* and uncomment the following lines:
+{{{
+		           var	antRunner:JUnitTestRunner = new JUnitTestRunner();
+		           antRunner.run(new TestSuite(FlexUnitTests), function():void {
+                  	     fscommand("quit");
+         		   }); 
+}}}
+
+The default ant target will build MonkeyContacts.swf and FlexMonkeyTests.swf, run the tests, and write the results to the *reports* directory.
