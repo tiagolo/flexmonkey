@@ -192,3 +192,163 @@ To create your own testSwf wrapper, simply replace *YourTests* in the above code
 
 Add !FlexMonkey.swc (included in the *lib* directory of the example) to your build path to compile the testSwf.
 
+= Passing Parameters to !FlexMonkeyLauncher =
+
+In order to automate running !FlexMonkey tests, you can create an html wrapper that starts !FlexMonkeyLauncher and passes it the testSwf and targetSwf names via [http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html flashvars].
+
+The !FlexMonkey example provides !MonkeyContactsTest.html that you can use as a template for creating a wrapper.
+
+{{{
+<html>
+<!-- 
+
+Customize this file to pass arguments to FlexMonkeyLauncher:
+
+targetSwf (required) - The name of the swf to be tested. It must reside in the same directory as FlexMonkeyLauncher.
+testSwf - The name of the swf continaing your tests. It also must reside in the same place as FlexMonkeyLauncher.
+visible - If false, the FlexMonkey window will not be displayed
+targetHeight - The height to be set for the targetSwf.
+targetWidth - The width to be set for the targetSwf.
+
+The arguments are passed to FlexMonkeyLauncher as flashvars. See http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html
+to learn more about setting flashvars. flashvars are passed by IE using the "param" tag. Other browsers use the "embed" tag. 
+Specify both if you'll be testing in both browsers.
+
+ -->
+<head>
+<title>FlexMonkeyLauncher</title>
+<style>
+body { margin: 0px;
+ overflow:hidden }
+</style>
+</head>
+<body scroll='no'>
+
+
+    <object id='FlexMonkeyRunner' classid='clsid:D27CDB6E-AE6D-11cf-96B8-444553540000' codebase='http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab' height='100%' width='100%'>
+        <param name='src' value='FlexMonkeyLauncher.swf'/>
+        <param name='flashVars' value='targetSwf=MonkeyContacts&testSwf=FlexMonkeyTests&visible=true'/>
+        <embed name='mySwf' src='FlexMonkeyLauncher.swf' pluginspage='http://www.adobe.com/go/getflashplayer' height='100%' width='100%' flashVars='targetSwf=MonkeyContacts&testSwf=FlexMonkeyTests&visible=true'/>
+    </object>
+
+</body>
+</html>
+
+}}} 
+
+The swf to launch is specified using a [http://livedocs.adobe.com/flex/3/html/help.html?content=passingarguments_3.html flashvar] called *targetSwf*. Notice that the targetSwf parameter is specified twice. The *param* tag specifies it for IE browsers, and the *embed* tag specifies it for non-IE ones. You only need to use both if you'll be testing in multiple browser types.
+
+When you open !FlexMonkeyTest.html in a browser, the targetSwf application window opens, and the !FlexMonkey window opens on top of it (unless *visible* is set to _false_). If a testSwf is specified, then it's also loaded. When [RunningFromAnt running from ant], the testSwf would additionally kick off the test runner.
+
+= Running from Ant = 
+
+See RunningFromAnt.
+
+= Testing Server-based SWF's =
+
+Simply deploy !FlexMonkeyLauncher.swf, the test swf (!FlexMonkeyTests.swf) and the html wrapper (!MonkeyContactsTest.html) to the directory on the server containing the app to be tested (!MonkeyContacts.swf). Then open the wrapper in a browser specifying the full url, for example, `http://localhost:8080/myapp/MonkeyContactsTest.html`.
+
+= Understanding Recorded Commands =
+
+The !FlexAutomationAPI dispatches [http://livedocs.adobe.com/flex/3/langref/index.html AutomationRecordEvent]s containg an event name, an array of argument objects, and a reference to the target component. Flexmonkey checks for the existence of a property value it can use to identify the component on playback. Properties are searched in the following sequence:
+
+  # automationName
+  # id
+  # automationID
+
+Many (most?) Flex components generate an automationName using some logically identifying value. A Button, for example, has a default automationName set to its label. The !FlexAutomationAPI generates an [http://livedocs.adobe.com/flex/3/langref/index.html AutomationID] for every component, so every recorded command is guaranteed to provide an identifier value. automationID's are however derived by serializing the component tree from the component back to the root, and is therefore a very long and very unreadable string. If you want your tests to be readable and (human) modifiable, you will want to assign components id's or automationNames. Alternatively, you can modify a command to use a specific property-value pair, as described below.
+
+= Modifying Recorded Commands =
+
+
+You can clear all commands from the lists by clicking the *Clear* button. You can delete individual commands by clicking the delete-icon to the left of each command. Toggling the *Record* button on will add newly recorded commands to the end of the list.
+
+Clicking the *Enable editing* checkbox will allow you to modify the recorded commands. (You cannot currently edit the *Arguments* column). You can change the Value and Property columns to any property-value pair you want to use to identify the component. Flexmonkey will return the first component found containing the pair, and the search order is indeterminate. You can limit the search to the children of a component identified by the Container Value and Container Property columns. If no Container values are specified, the search considers all components. (Specifically, all "raw" descendants of the [http://livedocs.adobe.com/flex/2/langref/mx/managers/SystemManager.html SystemManager]).
+
+As an additional aid in developing tests, !FlexMonkey includes [FlexSpy http://code.google.com/p/fxspy/] to allow you to inspect the !UIComponent tree comprising your app. To start !FlexSpy, click on the *!FlexSpy* button on the *!Command List* tab.
+
+= Understanding !FlexCommands =
+
+Flexmonkey generates FlexCommands from your recorded commands, and you can of course easily change or create them in source code, or generate command sequences programmatically.
+
+{{{
+		/**
+		 * Generate a flex event for the component identified by the specified 
+		 * property-value pair.
+		 * 
+		 * @param value the value to search for
+		 * @param name the name of the event to generate
+		 * @param args the event args
+		 * @param prop the property to search for the specified value. Defaults to automationName.
+		 * @param containerValue if specified, only children/descendants of the container having this property value will be searched.
+		 * @param containerProp The property to search for the specified containerValue. If no containerProperty-containerValue pair is specified, all components will be searched.
+		 */ 	
+		public function FlexCommand(value:String, name:String, args:Array = null, prop:String = "automationName", containerValue:String = null, containerProp:String = null)
+}}}
+
+For example: 
+
+{{{
+// Click the "Add" button 100 times.
+for (i:int=0; i < 100; i++) {
+   var cmd:FlexCmmand = new FlexCommand("Click","Add",["0"],"label"]);
+   cmds[i] = cmd;
+}
+
+runCommands(cmds);
+}}}
+
+= Adding Pauses to your Script =
+
+All commands are executed asynchronously, and it can sometimes be necessary to force a command to wait additional time before executing during playback. You can do this by adding !PauseCommands to the Array you pass to !FlexMonkey.runCommands(). 
+
+{{{
+		/**
+		 * Pause for the specified delay time
+		 * @param delay in milliseconds
+		 */ 
+		public function PauseCommand(delay:int)
+}}}
+
+By default, !Flexmonkey pauses 5 seconds between command invocations during playback.
+
+Here's an example of adding a pause to a script:
+
+{{{
+		cmdRunner.runCommands([
+			new FlexCommand("inName", "SelectText", ["0", "0"], "automationName"),
+			new PauseCommand(2500),
+			new FlexCommand("inName", "Input", ["Fred"], "automationName")]);
+	}
+}}}
+
+
+= Calling Functions from Your Script =
+
+Sometimes you might want to execute some actionscript code between commands, for example, to test some assertions. You can insert a function call between commands with a !CallCommand:
+
+{{{
+		/**
+		 * Call a function during playback
+		 * @param func the function to call
+		 */ 
+		public function CallCommand(func:Function)
+}}}
+
+Here's an example of calling a function within a script:
+
+{{{
+		cmdRunner.runCommands([
+			new FlexCommand("inName", "SelectText", ["0", "0"], "automationName"),
+			new CallCommand(checkSomething),
+			new FlexCommand("inName", "Input", ["Fred"], "automationName")]);
+
+}}}
+
+= Getting help =
+
+Check out the discussion board at http://groups.google.com/group/flexmonkey.
+
+= Contributing to Flexmonkey =
+
+Why don't you?
