@@ -60,8 +60,108 @@ Clicking the *Enable editing* checkbox will allow you to modify the recorded com
 
 As an additional aid in developing tests, !FlexMonkey includes [FlexSpy http://code.google.com/p/fxspy/] to allow you to inspect the !UIComponent tree comprising your app. To start !FlexSpy, click on the *!FlexSpy* button on the *!Command List* tab.
 
-= Generating !TestCase Code =
+= Generating a !FlexUnit Test =
 
-To be continued....
+Click on the FlexUnit TestCase tab to view the generated source code. Two methods are generated, the first calls !FlexMonkey.runCommands passing it an array of !FlexCommands generated from the Flexmonkey Command List. The second method contains a stub body where you would write actual validation code specific to what's being tested by the command sequence. You can copy and paste this code into a !FlexUnit !TestCase and add it to any !FlexUnit !TestSuite. (With minor modifications, the source can be used with other automated testing suites besides !FlexUnit).
 
+http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot3.png
+
+Click the *Show completeTestCase* checkbox and a complete !FlexUnit !TestCase will be generated.
+
+http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot4.png
+
+Copy and paste the generated code into an !ActionScript source file and add testing validations. For example:
+
+{{{
+package test
+{
+	import com.gorillalogic.flexmonkey.commands.CallCommand;
+	import com.gorillalogic.flexmonkey.commands.CommandRunner;
+	import com.gorillalogic.flexmonkey.commands.FlexCommand;
+	import com.gorillalogic.flexmonkey.core.MonkeyEvent;
+	import com.gorillalogic.flexmonkey.core.MonkeyUtils;
+	
+	import flexunit.framework.Assert;
+	import flexunit.framework.TestCase;
+	
+	import mx.collections.ArrayCollection;
+	import mx.controls.DataGrid;
+	import mx.controls.DateField;
+
+
+	public class FlexUnitTests extends TestCase {
+
+	// Test method
+	public function testSomething():void {
+		var cmdRunner:CommandRunner = new CommandRunner();
+		cmdRunner.addEventListener(MonkeyEvent.READY_FOR_VALIDATION, addAsync(verifySomething, 10000));
+		cmdRunner.runCommands([
+			new FlexCommand("inName", "SelectText", ["0", "0"], "automationName"),
+			new FlexCommand("inName", "Input", ["Fred"], "automationName"),
+			new FlexCommand("inType", "Open", ["null"], "automationName"),
+			new FlexCommand("inType", "Select", ["Work", "1", "0"], "automationName"),
+			new FlexCommand("inPhone", "SelectText", ["0", "0"], "automationName"),
+			new FlexCommand("inPhone", "Input", ["555 555 5555"], "automationName"),
+			// The following command was inserted manually to demonstrate a workaround for DateField bug
+			// See http://groups.google.com/group/flexmonkey/browse_thread/thread/bf4af5e1d8164608# for more info
+			new CallCommand(function():void {DateField(MonkeyUtils.findComponentWith("inDate")).open()}),			
+			new FlexCommand("inDate", "Open", ["null"], "automationName"),
+			new FlexCommand("inDate", "Change", ["Fri Dec 26 2008"], "automationName"),
+			new FlexCommand("Add", "Click", ["0"], "automationName")
+]);
+   }
+	// Called after commands have been run
+	private function verifySomething(event:MonkeyEvent):void {
+		   var comp:DataGrid = MonkeyUtils.findComponentWith("grid","id") as DataGrid;
+		   Assert.assertEquals("Fred", ArrayCollection(comp.dataProvider).getItemAt(0).name);
+		   Assert.assertEquals("Work", ArrayCollection(comp.dataProvider).getItemAt(0).type);		   
+
+	}   }
+}
+
+}}}
+
+Let's examine the code. First, we need a CommandRunner to run our FlexMonkey commands. 
+
+{{{
+		var cmdRunner:CommandRunner = new CommandRunner();
+}}}
+
+Next, we have to tell !FlexUnit that the test is asynchronous. After Flexmonkey completes running a command list, he dispatches a *READY_FOR_VALIDATION* event. We use !FlexUnit !TestCase's addAsync method to tell !FlexUnit that our *READY_FOR_VALIDATION* event handler's completion signals that the test has passed (unless of course one of our assertions fails). (Learn [http://www.adobe.com/cfusion/communityengine/index.cfm?event=showdetails&productId=2&postId=6882 more] about asynchrounous testing with !FlexUnit).
+
+{{{
+		cmdRunner.addEventListener(MonkeyEvent.READY_FOR_VALIDATION, addAsync(verifySomething, 10000);
+}}}
+
+The second argument to addAsync tells !FlexUnit to fail the test if the event is not received within 10 seconds. 
+
+The handler passed to addAsync is where you would typically write your validation code:
+
+{{{
+	private function verifySomething(event:MonkeyEvent):void {
+	   var comp:DataGrid = MonkeyUtils.findComponentWith("grid","id") as DataGrid;
+	   Assert.assertEquals("Fred", ArrayCollection(comp.dataProvider).getItemAt(0).name);
+	   Assert.assertEquals("Work", ArrayCollection(comp.dataProvider).getItemAt(0).type);		   
+	}
+}}}
+
+You can easily access UI components using the MonkeyUtils.findComponentWith() Method.
+
+{{{
+		/**
+		 * Find the first component with the specified property/value pair. If a container is specified, then
+		 * only its children and descendents are searched. The search order is (currently) indeterminate. If no container is specified,
+		 * then all components will be searched. If the prop value is "automationID", then the id is resolved directly without searching.
+		 */
+		public static function findComponentWith(value: String, prop:String="automationName", container:UIComponent=null):UIComponent
+}}}
+
+You can then examine component properties to determine if the script has produced the expected state using standard !FlexUnit assertions.
+
+{{{
+	   Assert.assertEquals("Fred", ArrayCollection(comp.dataProvider).getItemAt(0).name);
+	   Assert.assertEquals("Work", ArrayCollection(comp.dataProvider).getItemAt(0).type);		
+}}}
+
+The testSomething method adds a row to the table and we're checking that the columns in its first row have the expected name and phone type, "Fred" and "Work".
 
