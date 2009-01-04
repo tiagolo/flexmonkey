@@ -34,6 +34,9 @@ To load a swf for testing, copy !FlexMonkeyLauncher.swf to the directory contain
 
 Enter the name of the swf you want to test in the *App to Test* field on the *Setup* tab and click the *Load SWF* button. The application should start and be displayed beneath the flexmonkey window.
 
+!FlexMonkeyLauncher provides the Flex automation API as well as the flexmonkey API and user interface needed for creating and running tests. Prior to !FlexMonkey 0.6, it was necessary to create a special version of your application swf that was linked with the !FlexMonkey and Flex Automation libraries. Now however, !FlexMonkeyLauncher provides these dynamically to any application it loads, so the swf you test can be the very same swf as the one you will deploy into production.
+
+
 = Recording UI Interactions =
 
 Click the *Record* button. The *Command List* window will be displayed. Each interaction with the targetSwf will be recorded as a *command* in the list. Clicking on the flexmonkey window will stop recording. Clicking the *Record* button again will resume recording and append new commands to the end of the list.
