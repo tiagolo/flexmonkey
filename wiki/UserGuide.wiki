@@ -34,5 +34,34 @@ To load a swf for testing, copy !FlexMonkeyLauncher.swf to the directory contain
 
 Enter the name of the swf you want to test in the *App to Test* field on the *Setup* tab and click the *Load SWF* button. The application should start and be displayed beneath the flexmonkey window.
 
+= Recording UI Interactions =
+
+Click the *Record* button. The *Command List* window will be displayed. Each interaction with the targetSwf will be recorded as a *command* in the list. Clicking on the flexmonkey window will stop recording. Clicking the *Record* button again will resume recording and append new commands to the end of the list.
+
+= Playing Back Commands =
+
+Click the *Run* button on the *Command List* tab. Recorded commands will be replayed against the targetSwf. If no commands in the list are highlighted, all commands will be replayed. If commands are selected, then only the selected commands will be replayed.
+
+= Understanding Recorded Commands =
+
+The !FlexAutomationAPI dispatches [http://livedocs.adobe.com/flex/3/langref/index.html AutomationRecordEvent]s containg an event name, an array of argument objects, and a reference to the target component. Flexmonkey checks for the existence of a property value it can use to identify the component on playback. Properties are searched in the following sequence:
+
+  # automationName
+  # id
+  # automationID
+
+Many (most?) Flex components generate an automationName using some logically identifying value. A Button, for example, has a default automationName set to its label. The !FlexAutomationAPI generates an [http://livedocs.adobe.com/flex/3/langref/index.html AutomationID] for every component, so every recorded command is guaranteed to provide an identifier value. automationID's are however derived by serializing the component tree from the component back to the root, and is therefore a very long and very unreadable string. If you want your tests to be readable and (human) modifiable, you will want to assign components id's or automationNames. Alternatively, you can modify a command to use a specific property-value pair, as described below.
+
+= Modifying Recorded Commands =
+
+You can clear all commands from the lists by clicking the *Clear* button. You can delete individual commands by clicking the delete-icon to the left of each command. Toggling the *Record* button on will add newly recorded commands to the end of the list.
+
+Clicking the *Enable editing* checkbox will allow you to modify the recorded commands. (You cannot currently edit the *Arguments* column). You can change the Value and Property columns to any property-value pair you want to use to identify the component. Flexmonkey will return the first component found containing the pair (the search order is indeterminate). You can limit the search to the children of a component identified by the *Container Value* and *Container Property* columns. If no Container values are specified, the search considers all components. (Specifically, all "raw" descendants of the [http://livedocs.adobe.com/flex/2/langref/mx/managers/SystemManager.html SystemManager]).
+
+As an additional aid in developing tests, !FlexMonkey includes [FlexSpy http://code.google.com/p/fxspy/] to allow you to inspect the !UIComponent tree comprising your app. To start !FlexSpy, click on the *!FlexSpy* button on the *!Command List* tab.
+
+= Generating !TestCase Code =
+
 To be continued....
+
 
