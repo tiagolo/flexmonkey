@@ -1,5 +1,25 @@
 #summary Introducing FlexMonkey 0.6.
 
-More later...
+= !FlexMonkey 0.6 is Here! =
 
-In the meantime, refer to the [GettingStarted documentation].
+!FlexMonkey 0.6 lets you test application swfs without first recompiling them with the flexmonkey and flex automation libraries. In fact, you can package your flexunit tests as a separate swf, so all test code can be physically isolated from your actual application.
+
+= Why do you care? =
+
+The swf you test and the one you deploy can now be the same swf. There is no longer a need to compile your application for testing, run your tests, and then recompile your application without the test code prior to deployment. You can even run tests against deployed applications. (You might do this for example to confirm the integrity of a live system.)
+
+= Differences from 0.5 =
+
+ * You now use *!FlexMonkeyLauncher.swf* to launch your application for testing as well as to launch separate swfs containing your tests. The !FlexMonkeyLauncher opens the !FlexMonkey window, which now contains a *Setup* tab where you can tell it the names of the swf you want to launch for testing, and optionally, the swf to launch that contains previously recorded test scripts.
+
+ * When running from ant, you create a wrapper html file that starts the launcher and uses flashvars to pass it the name of the application swf, and the name of the swf containing your tests. You supply this html file to the flexunit ant task.
+
+* You create a wrapper application for your testsuite so that your tests are packaged as their own swf file.
+
+* Static initialization via the Mixin metatag is no longer necessary.
+
+* !FlexMonkeyUI.swc has been eliminated.
+
+= How do you get started? =
+
+See the QuickTutorial and UserGuide.
