@@ -11,6 +11,18 @@ Flexmonkey is comprised of two components:
 
  * *!FlexMonkeyLauncher.swf* - An application that launches Flex applications for use with !FlexMonkey. You use the launcher both for creating new tests as well as replaying previously recorded tests.
 
+= Differences from 0.5 =
+
+ * You now use *!FlexMonkeyLauncher.swf* to launch your application for testing as well as to launch separate swfs containing your tests. The !FlexMonkeyLauncher opens the !FlexMonkey window, which now contains a *Setup* tab where you can tell it the name of the swf you want to launch for testing, and optionally, the swf to launch that contains previously recorded test scripts.
+
+ * When running from ant, you create a wrapper html file that starts the launcher and uses flashvars to pass it the name of the application swf, and the name of the swf containing your tests. You supply this html file to the flexunit ant task.
+
+ * In order to package your tests within their own swf, you create a wrapper application that registers your tests with either flexmonkey's built-in flexunit instance or, if you're running from ant, with !JunitTestRunner.
+
+ * Static initialization via the Mixin metatag is no longer necessary.
+
+ * FlexMonkeyUI.swc has been eliminated.
+
 = targetSwfs and testSwfs =
 
 By using the launcher, you can test any application without needing to link it with testing libraries or test case code. You package your test cases into a separate swf (the _testSwf_) that is loaded by the launcher dynamically along with your application (the _targetSwf_). 
