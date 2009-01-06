@@ -18,7 +18,7 @@ The swf you test and the one you deploy can now be the same swf. There is no lon
 
  * Static initialization via the Mixin metatag is no longer necessary.
 
- * !FlexMonkeyUI.swc has been eliminated.
+ * FlexMonkeyUI.swc has been eliminated.
 
 = How do you get started? =
 
