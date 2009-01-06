@@ -14,11 +14,11 @@ The swf you test and the one you deploy can now be the same swf. There is no lon
 
  * When running from ant, you create a wrapper html file that starts the launcher and uses flashvars to pass it the name of the application swf, and the name of the swf containing your tests. You supply this html file to the flexunit ant task.
 
-* You create a wrapper application for your testsuite so that your tests are packaged as their own swf file.
+ * In order to package your tests within their own swf, you create a wrapper application that registers your tests with either flexmonkey's built-in flexunit instance or, if you're running from ant, with !JunitTestRunner.
 
-* Static initialization via the Mixin metatag is no longer necessary.
+ * Static initialization via the Mixin metatag is no longer necessary.
 
-* !FlexMonkeyUI.swc has been eliminated.
+ * !FlexMonkeyUI.swc has been eliminated.
 
 = How do you get started? =
 
