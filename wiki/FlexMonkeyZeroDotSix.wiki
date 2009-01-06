@@ -22,4 +22,4 @@ The swf you test and the one you deploy can now be the same swf. There is no lon
 
 = How do you get started? =
 
-See the QuickTutorial and UserGuide.
+See GettingStarted and the new UserGuide.
