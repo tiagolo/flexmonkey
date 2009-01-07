@@ -18,7 +18,7 @@ Flex Builder Standard edition provides a trial license of the [http://www.adobe.
 
 = Why do I get the message "Illegal override of removeChildBridge?" =
 
-Your application swf must be compiled with the same version of flex as !FlexMonkeyLauncher. The !FlexMonkeyLauncher included with the !FlexMonkey.0.6.zip download was compiled with 3.0. We'll be uploading FlexMonkey.0.6a.zip shortly which will contain a 3.2 version.
+Your application swf must be compiled with the same version of flex as !FlexMonkeyLauncher. The !FlexMonkeyLauncher included with the !FlexMonkey.0.6.zip download was compiled with 3.0. The !FlexMonkeyLauncher included with !FlexMonkey.0.6a.zip was compiled with 3.2.
 
 = Does !FlexMonkey work with custom components? =
 
