@@ -35,10 +35,7 @@ The only difference between running your tests using !FlexMonkey's built-in !Fle
                         import com.gorillalogic.flexmonkey.ui.FlexMonkey;
                         public function create():void {
 		           var	antRunner:JUnitTestRunner = new JUnitTestRunner();
-		           antRunner.run(new TestSuite(FlexUnitTests), function():void {
-                  	     fscommand("quit");
-         		   }); 
-
+		           antRunner.run(new TestSuite(FlexUnitTests)); 
                         }
                 ]]>
         </mx:Script>
@@ -57,8 +54,6 @@ To communicate with the flexunit ant task, we must create a !JUnitTestRunner ins
 }}}
 
 
-
-The function closure passed to the run method instructs the !JunitTestRunner to quit the application after completing the test.
 
 == Create the ant script ==
 
