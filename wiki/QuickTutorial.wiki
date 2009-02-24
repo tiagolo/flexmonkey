@@ -8,7 +8,7 @@ _Updated for FlexMonkey 0.6. For 0.5, see the [QuickTutorialForZeroDotFive old t
 This tutorial will walk through the features of flexmonkey by using it to test a simple contact manager application. The running application should be embedded here:
 
 
-<wiki:gadget url="http://keystone.gorillalogic.com/~sstern/fm06/flash_container.xml" height="600" width="800"></wiki:gadget>
+<wiki:gadget url="http://keystone.gorillalogic.com/FlexMonkey/flash_container.xml" height="600" width="800"></wiki:gadget>
 
 Please [http://code.google.com/p/flexmonkey/downloads/list download] the source and binaries.
 
