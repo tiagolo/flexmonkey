@@ -5,7 +5,7 @@ Note:  This is copied from the Adobe document Instrumenting the RandomWalk custo
 
 The RandomWalk component is an example of a complex custom component. It has custom events and custom item renderers. Showing how it is instrumented can be helpful in instrumenting your custom components. For example, you can instrument the RandomWalk custom component so that interaction with it can be recorded and played back by using the FlexMonkey automation tool.
 
-You can find the source code used in this section at the following location:
+You can find the source code used in this section at the following location http://flexmonkey.googlecode.com/files/FlexMonkeyRandomWalk.zip
 
 = Instrumenting RandomWalk custom component =
 The first task when instrumenting a custom component is to create a delegate and add the new component to the class definitions XML file.
