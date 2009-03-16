@@ -7,6 +7,6 @@ With the use of the FlexMonkeyLauncher, which is an application, the loaded appl
 
 = Details =
 
-  # You can link FlexMonkey into your application instead of using the FlexMonkeyLauncher.  Instructions can be found at LinkingFlexMonkey.  The issue with this approach is you will need to recompile your application in order to deploy or you will have the automation and FlexMonkey code included in your application.
+  # You can link FlexMonkey into your application instead of using the FlexMonkeyLauncher.  Instructions can be found at LinkingFlexMonkeyIntoApp.  The issue with this approach is you will need to recompile your application in order to deploy or you will have the automation and FlexMonkey code included in your application.
 
   # This option will require a code modification, but allows your application to function properly and use the FlexMonkeyLauncher.  In your code change Application.application to be any UIComponent in your application.parentApplication.  For example, if you have a button in your application with an id="myButton", you would write myButton.parentApplication and it will return the same result as Application.application.
