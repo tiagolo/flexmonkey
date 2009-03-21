@@ -1,4 +1,4 @@
-#summary Linking !FlexMonkey into your swf instead of using the launcher
+#summary Linking FlexMonkey into your swf instead of using the launcher
 #labels Featured
 
 
