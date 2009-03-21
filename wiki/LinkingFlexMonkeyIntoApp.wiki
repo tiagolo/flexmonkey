@@ -1,8 +1,12 @@
-#summary Getting Started With FlexMonkey
+#summary Linking !FlexMonkey into your swf instead of using the launcher
 #labels Featured
 
 
-= Preparing your application for testing =
+= If the launcher doesn't work for you =
+
+The preferred way to run !FlexMonkey is with the launcher. However, if for any reason your swf does not work properly when run with the launcher, you can link !FlexMonkey and the automation API directly into your targetSwf by compiling it according to the instructions below.
+
+= Linking !FlexMonkey into your Application =
 
 Build FlexMonkey from source, or [http://code.google.com/p/flexmonkey/downloads/list download it]. Then configure FlexMonkey as follows.
 
