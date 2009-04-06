@@ -12,7 +12,7 @@ Build FlexMonkey from source, or [http://code.google.com/p/flexmonkey/downloads/
 Add FlexMonkey.swc to the compile path of the Flex app you want to test and recompile it with the following additional Flex compiler options:
 
 {{{
--include com.gorillalogic.flexmonkey.ui.Bootstrap -include-libraries "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_agent.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_dmv.swc" 
+-includes com.gorillalogic.flexmonkey.ui.Bootstrap -include-libraries "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_agent.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation.swc" "/YOUR_FLEX_INSTALLATION/frameworks/libs/automation_dmv.swc" 
 }}}
 
 If you're using Flex Builder, make sure the *Framework Linkage* on the *Flex Build Path* Library tab is set to *Merged into Code*. This will ensure that the swc's are merged into your application swf file. *automation_agent.swc*, *automation.swc* and *automation_dmv.swc* provide the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex automation API] required by FlexMonkey.
