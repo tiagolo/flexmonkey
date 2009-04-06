@@ -1,5 +1,4 @@
 #summary Workaround for Application.application reference FlexMonkeyLauncher instead of your application
-#labels Featured
 
 = Introduction =
 
