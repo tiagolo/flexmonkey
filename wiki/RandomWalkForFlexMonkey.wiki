@@ -1,5 +1,4 @@
 #summary RandomWalk custom component example for FlexMonkey
-#labels Featured
 
 Note:  This is copied from the Adobe document Instrumenting the RandomWalk custom component for QTP.  It has been modified for FlexMonkey.
 
