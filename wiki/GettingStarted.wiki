@@ -1,11 +1,9 @@
 #summary Getting Started With FlexMonkey
 #labels Featured,Phase-Deploy
 
-_Updated for FlexMonkey 0.6. To run with 0.5, see the [GettingStartedWithZeroDotFive old setup instructions]_
+= Getting !FlexMonkey =
 
-= Getting !FlexMonkey 0.6 =
-
-[http://code.google.com/p/flexmonkey/downloads/list Download] and expand !FlexMonkey.0.6.zip. 
+[http://code.google.com/p/flexmonkey/downloads/list Download] and expand the !FlexMonkey zip. 
 
 = Starting a !FlexMonkey Session = 
 
