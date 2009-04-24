@@ -9,9 +9,7 @@ The default selection mode for the DataGrid in FlexMonkey records the data for e
 
 When recording, the ListBaseAutomationImpl.as delegate class looks in the AutomationManager.automationEnvironment to see if its propertyNameMap defines the property "enableIndexBasedSelection".  If the delegate finds the property to be defined, it sets its selectionType to ListItemSelectEvent.SELECT_INDEX instead of the default ListItemSelectEvent.SELECT.
 
-So, to have the monkey record DataGrid selections by index, you need to edit the FlexMonkeyEnv.xml file and then recompile the library.
-
-Here are the steps to make the requisite additions to FlexMonkeyEnv.xml:
+So, to have the monkey record DataGrid selections by index, follow these steps for editing FlexMonkeyEnv.xml:
 
 1) Locate the
 {{{
