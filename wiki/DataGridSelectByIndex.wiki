@@ -1,4 +1,4 @@
-#Have FlexMonkey record DataGrid selections by row index instead of row contents.
+Have FlexMonkey record DataGrid selections by row index instead of row contents.
 
 = Introduction =
 
