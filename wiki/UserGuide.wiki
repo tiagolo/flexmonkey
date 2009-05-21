@@ -59,6 +59,8 @@ The !FlexAutomationAPI dispatches [http://livedocs.adobe.com/flex/3/langref/inde
 
 Many (most?) Flex components generate an automationName using some logically identifying value. A Button, for example, has a default automationName set to its label. The !FlexAutomationAPI generates an [http://livedocs.adobe.com/flex/3/langref/index.html AutomationID] for every component, so every recorded command is guaranteed to provide an identifier value. automationID's are however derived by serializing the component tree from the component back to the root, and is therefore a very long and very unreadable string. If you want your tests to be readable and (human) modifiable, you will want to assign components id's or automationNames. Alternatively, you can modify a command to use a specific property-value pair, as described below.
 
+If when playing back a test you get an "Unable to resolve id.." error, it is likely because a previously recorded automationID is no longer valid. This is typically because the component tree has changed since the test was recorded, and so the target component now has a new automationID. You will need to re-record your test, or modify the command that's failing to use a different property-value pair as described below.
+
 = Modifying Recorded Commands =
 
 You can clear all commands from the lists by clicking the *Clear* button. You can delete individual commands by clicking the delete-icon to the left of each command. Toggling the *Record* button on will add newly recorded commands to the end of the list.
