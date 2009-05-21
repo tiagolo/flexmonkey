@@ -1,6 +1,8 @@
 #summary FAQ
 #labels Featured
 
+<wiki:toc/>
+
 = How do I get help? =
 
 See the !FlexMonkey discussion board at http://groups.google.com/group/flexmonkey.
@@ -14,6 +16,8 @@ See GettingStarted.
 See RunningFromAnt.
 
 = Why do I get the message "License not present. With the trial verison only limited records are allowed."? =
+If you build FlexMonkey from source, you will need a license for the Flex Automation API.
+
 Flex Builder Standard edition provides a trial license of the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex Automation API], which is the underlying mechanism used by FlexMonkey. The trial version limits you to 30 actions (record/playback).  Adobe does not currently seem to publicly document just exactly what limitations are imposed by the trial license. Flex Builder Professional provides a full license of the Flex Automation API. Hopefully Adobe will open source the Flex Automation API sometime soon....
 
 = Why do I get the message "Illegal override of removeChildBridge?" =
@@ -26,10 +30,6 @@ FlexMonkey works with most custom components that extend concrete Flex
 Components. Custom components that descend directly from UIComponent  
 require special handling as explained in http://www.adobe.com/go/flex_automation_api.
 
-= Where can I get the source for aggro.swc =
-
-aggro.swc provides the CollapsableTitleWindow component for FlexMonkey. You can download the source from http://www.adobe.com/cfusion/exchange/index.cfm?event=extensionDetail&extid=1682522.
-
 = Where can I get the source for !FlexSpy? =
 
 http://code.google.com/p/fxspy/
@@ -41,3 +41,7 @@ http://opensource.adobe.com/wiki/display/flexunit/FlexUnit
 = What is !AutoQuick? =
 
 AutoQuick is a sample application from Adobe demonstrating the use of the Automation API. FlexMonkey is built on top of a slightly modified version of AutoQuick. (Learn [http://www.adobe.com/devnet/flex/samples/custom_automated/ more]).
+
+= Why do I get the error "Unable to resolve id..." when playing back a test? =
+
+See http://code.google.com/p/flexmonkey/wiki/UserGuide?ts=1242918275&updated=UserGuide#Understanding_Recorded_Commands.
