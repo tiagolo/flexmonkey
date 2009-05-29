@@ -46,7 +46,7 @@ AutoQuick is a sample application from Adobe demonstrating the use of the Automa
 
 See http://code.google.com/p/flexmonkey/wiki/UserGuide?ts=1242918275&updated=UserGuide#Understanding_Recorded_Commands.
 
-= When I use FlexMonkeyLauncher, Application.application is referencing the launcher instead of my targetSwf. What can I do? =
+= When I use !FlexMonkeyLauncher, Application.application is referencing the launcher instead of my targetSwf. What can I do? =
 
 See http://code.google.com/p/flexmonkey/wiki/ApplicationapplicationFix
 
