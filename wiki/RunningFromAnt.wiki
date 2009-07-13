@@ -1,6 +1,13 @@
 #summary Running FlexMonkey tests from Ant
 #labels Featured
 
+
+----
+
+*Important Note: _This document describes !FlexMonkey 0.8a. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site and see the !FlexMonkey Code Generation Guide._*
+
+----
+
 = Running !FlexMonkey tests from Ant =
 
 Before getting started, please review the QuickTutorial.
