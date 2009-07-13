@@ -1,7 +1,11 @@
-#summary FlexMonkey Tutorial.
+#summary FlexMonkey 0.8 Tutorial.
 #labels Featured
 
-_Updated for FlexMonkey 0.6. For 0.5, see the [QuickTutorialForZeroDotFive old tutorial]._
+----
+
+*Important Note: _This document describes !FlexMonkey 0.8. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
+
+----
 
 = Running the Sample Application =
 
