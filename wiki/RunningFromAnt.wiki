@@ -1,5 +1,4 @@
-#summary Running FlexMonkey tests from Ant
-#labels Featured
+#summary Running FlexMonkey 0.8a tests from Ant
 
 
 ----
