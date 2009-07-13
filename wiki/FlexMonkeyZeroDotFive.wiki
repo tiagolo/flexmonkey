@@ -1,4 +1,5 @@
 #summary Announcing FlexMonkey 0.5!
+#labels Deprecated
 
 = FlexMonkey 0.5 is Here! =
 
