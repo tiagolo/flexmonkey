@@ -1,5 +1,5 @@
 #summary FlexMonkey Overview
 
-FlexMonkey is a unit testing framework for Flex apps that provides for automating the testing of Flex UI functionality. FlexMonkey can record and play back Flex UI interactions, and generates editable !ActionScript-based testing scripts that can easily be included within a continuous integration process.
-
-FlexMonkey was donated by [http://www.gorillalogic.com Gorilla Logic] to the Flex Community. 
+<table border="0" width="50%">
+<tr><td>http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/flexmonkey.jpg</td><td><font size=4 color=blue>To learn more about !FlexMonkey, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com Project Home] page.</font></td></tr>
+</table>
