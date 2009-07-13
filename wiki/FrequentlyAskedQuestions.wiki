@@ -3,6 +3,10 @@
 
 <wiki:toc/>
 
+= Where can I download !FlexMonkey? =
+
+All !FlexMonkey downloads are available at the !FlexMonkey [http://flexmonkey.gorillalogic.com Project Home].
+
 = How do I get help? =
 
 See the !FlexMonkey discussion board at http://groups.google.com/group/flexmonkey.
@@ -10,6 +14,10 @@ See the !FlexMonkey discussion board at http://groups.google.com/group/flexmonke
 = How do I get started using !FlexMonkey? =
 
 See the [http://flexmonkey.gorillalogic.com#resources Getting Started Guide].
+
+= Where can I find !FlexMonkey documentation? =
+
+All !FlexMonkey documentation is available at the !FlexMonkey [http://flexmonkey.gorillalogic.com Project Home] site.
 
 = How do I run my !FlexMonkey tests from Ant? =
 
@@ -27,17 +35,13 @@ Flex Builder Standard edition provides a trial license of the [http://www.adobe.
 Components. Custom components that descend directly from UIComponent  
 require special handling as explained in InstrumentingForFlexMonkey.
 
-= Where can I get the source for !FlexSpy? =
-
-http://code.google.com/p/fxspy/
-
 = Where can I get the source for !FlexUnit? =
 
 http://opensource.adobe.com/wiki/display/flexunit/FlexUnit
 
 = What is !AutoQuick? =
 
-AutoQuick is a sample application from Adobe demonstrating the use of the Automation API. FlexMonkey is built on top of a slightly modified version of AutoQuick. (Learn [http://www.adobe.com/devnet/flex/samples/custom_automated/ more]).
+!AutoQuick is a sample application from Adobe demonstrating the use of the Automation API. FlexMonkey is built on top of a slightly modified version of AutoQuick. (Learn [http://www.adobe.com/devnet/flex/samples/custom_automated/ more]).
 
 = Why do I get the error "Unable to resolve id..." when playing back a test? =
 
