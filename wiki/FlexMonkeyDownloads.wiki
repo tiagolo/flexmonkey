@@ -6,4 +6,4 @@
 <tr><td>http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/flexmonkey.jpg</td><td><font size=4 color=blue>For all current !FlexMonkey downloads and documentation, please visitthe !FlexMonkey [http://flexmonkey.gorillalogic.com Project Home] page.</font></td></tr>
 </table>
 
-*Note:* If you are looking for !FlexMonkey 0.8a documentation, please visit http://code.google.com/p/flexmonkey/w/list.
+*Note:* If you are looking for !FlexMonkey 0.8a source and binaries, please visit http://code.google.com/p/flexmonkey/downloads/list.
