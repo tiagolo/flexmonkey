@@ -1,5 +1,10 @@
 #summary Linking FlexMonkey into your swf instead of using the launcher
 
+----
+
+*Important Note: _This document describes !FlexMonkey 0.8. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
+
+----
 
 = If the launcher doesn't work for you =
 
