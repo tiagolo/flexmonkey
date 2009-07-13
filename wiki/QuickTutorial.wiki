@@ -9,11 +9,6 @@
 
 = Running the Sample Application =
 
-This tutorial will walk through the features of flexmonkey by using it to test a simple contact manager application. The running application should be embedded here:
-
-
-<wiki:gadget url="http://www.gorillalogic.com/FlexMonkey/flash_container.xml" height="600" width="800"></wiki:gadget>
-
 Please [http://code.google.com/p/flexmonkey/downloads/list download] the source and binaries.
 
 The sample consists of the following components:
