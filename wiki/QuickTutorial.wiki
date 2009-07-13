@@ -1,5 +1,4 @@
 #summary FlexMonkey 0.8 Tutorial.
-#labels Featured
 
 ----
 
