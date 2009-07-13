@@ -1,4 +1,5 @@
 #summary Getting Started With FlexMonkey
+#labels Deprecated
 
 _This is no longer the recommended way to run FlexMonkey. See the new [GettingStarted set up instructions]._
 
