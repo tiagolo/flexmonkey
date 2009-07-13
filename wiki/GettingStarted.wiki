@@ -1,6 +1,11 @@
 #summary Getting Started With FlexMonkey
 #labels Featured,Phase-Deploy
 
+----
+
+*Important Note: _This document describes !FlexMonkey 0.8. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
+
+----
 = Getting !FlexMonkey =
 
 [http://code.google.com/p/flexmonkey/downloads/list Download] and expand the !FlexMonkey zip. 
