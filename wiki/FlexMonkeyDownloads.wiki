@@ -1,0 +1,7 @@
+#summary FlexMonkey Downloads
+
+----
+
+<font size=4 color=blue>All !FlexMonkey downloads and documentation are available at [http://flexmonkey.gorillalogic.com FlexMonkey Project Home].</font>
+
+----
