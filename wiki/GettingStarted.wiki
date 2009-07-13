@@ -1,8 +1,8 @@
-#summary Getting Started With FlexMonkey 0.8
+#summary Getting Started With FlexMonkey 0.8a
 
 ----
 
-*Important Note: _This document describes !FlexMonkey 0.8. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
+*Important Note: _This document describes !FlexMonkey 0.8a. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
 
 ----
 = Getting !FlexMonkey =
