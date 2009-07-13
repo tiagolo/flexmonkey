@@ -1,4 +1,4 @@
-#summary FAQ
+#summary FAQ. Updated for FlexMonkey 1.0
 #labels Featured
 
 <wiki:toc/>
@@ -9,26 +9,23 @@ See the !FlexMonkey discussion board at http://groups.google.com/group/flexmonke
 
 = How do I get started using !FlexMonkey? =
 
-See GettingStarted.
+See the [http://flexmonkey.gorillalogic.com#resources Getting Started Guide].
 
 = How do I run my !FlexMonkey tests from Ant? =
 
-See RunningFromAnt.
+See the [http://flexmonkey.gorillalogic.com#resources FlexMonkey Code Generation Guide].
 
 = Why do I get the message "License not present. With the trial verison only limited records are allowed."? =
+
 If you build FlexMonkey from source, you will need a license for the Flex Automation API.
 
-Flex Builder Standard edition provides a trial license of the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex Automation API], which is the underlying mechanism used by FlexMonkey. The trial version limits you to 30 actions (record/playback).  Adobe does not currently seem to publicly document just exactly what limitations are imposed by the trial license. Flex Builder Professional provides a full license of the Flex Automation API. Hopefully Adobe will open source the Flex Automation API sometime soon....
-
-= Why do I get the message "Illegal override of removeChildBridge?" =
-
-Your application swf must be compiled with the same version of flex as !FlexMonkeyLauncher. The !FlexMonkeyLauncher included with the !FlexMonkey.0.6.zip download was compiled with 3.0. The !FlexMonkeyLauncher included with !FlexMonkey.0.6a.zip was compiled with 3.2.
+Flex Builder Standard edition provides a trial license of the [http://www.adobe.com/devnet/flex/samples/custom_automated/ Flex Automation API], which is the underlying mechanism used by FlexMonkey. The trial version limits you to 30 actions (record/playback).
 
 = Does !FlexMonkey work with custom components? =
 
-FlexMonkey works with most custom components that extend concrete Flex  
+!FlexMonkey works with most custom components that extend concrete Flex  
 Components. Custom components that descend directly from UIComponent  
-require special handling as explained in http://www.adobe.com/go/flex_automation_api.
+require special handling as explained in InstrumentingForFlexMonkey.
 
 = Where can I get the source for !FlexSpy? =
 
@@ -48,6 +45,6 @@ See http://code.google.com/p/flexmonkey/wiki/UserGuide?ts=1242918275&updated=Use
 
 = When I use !FlexMonkeyLauncher, Application.application is referencing the launcher instead of my targetSwf. What can I do? =
 
-See http://code.google.com/p/flexmonkey/wiki/ApplicationapplicationFix
+See ApplicationapplicationFix
 
  
