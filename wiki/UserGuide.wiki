@@ -1,7 +1,10 @@
 #summary FlexMonkey 0.8 User Guide
-#labels Featured
 
-*_This user guide is for !FlexMonkey 0.8. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
+----
+
+*Important Note: _This user guide is for !FlexMonkey 0.8. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
+
+----
 
 <wiki:toc/>
 
