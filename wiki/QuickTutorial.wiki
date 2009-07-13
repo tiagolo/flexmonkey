@@ -31,7 +31,7 @@ Open !FlexMonkeyLauncher.swf in the standalone !FlashPlayer. The !FlexMonkey win
 
 Click the *Record* toggle button at the top of the screen. Now play around with the contact manager, which although primitive, offers a variety of UI gestures you can record. In addition to typing in the form, you can edit rows after they've been added to the grid, and the Phone Type field has a !ComboBox itemEditor. !Flexmonkey will faithfully record all UI events (many events such as mousemoves are filtered by default). !Flexmonkey displays each recorded event as a command in the Command List. Clicking anywhere in the Flexmonkey window will stop recording.
 
-http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot1.png
+http://flexmonkey.googlecode.com/svn/tags/FlexMonkey-0.8a/FlexMonkey/docs/images/screenShot1.png
 
 = Playing Back a Script =
 
@@ -43,11 +43,11 @@ You can play subsets of commands from the list by selecting them in the grid and
 
 Click on the FlexUnit TestCase tab to view the generated source code. Two methods are generated, the first calls !FlexMonkey.runCommands passing it an array of !FlexCommands generated from the Flexmonkey Command List. The second method contains a stub body where you would write actual validation code specific to what's being tested by the command sequence. You can copy and paste this code into a !FlexUnit !TestCase and add it to any !FlexUnit !TestSuite. (With minor modifications, the source can be used with other automated testing suites besides !FlexUnit).
 
-http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot3.png
+http://flexmonkey.googlecode.com/svn/tags/FlexMonkey-0.8a/FlexMonkey/docs/images/screenShot3.png
 
 Click the *Show completeTestCase* checkbox and a complete !FlexUnit !TestCase will be generated.
 
-http://flexmonkey.googlecode.com/svn/trunk/FlexMonkey/docs/images/screenShot4.png
+http://flexmonkey.googlecode.com/svn/tags/FlexMonkey-0.8a/FlexMonkey/docs/images/screenShot4.png
 
 Copy and paste the generated code into an !ActionScript source file and add testing validations. The example contains the file *`src/test/FlexUnitTests.as`* that provides an example:
 
