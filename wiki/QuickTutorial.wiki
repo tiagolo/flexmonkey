@@ -1,9 +1,9 @@
 #summary FlexMonkey 0.8 Tutorial.
 
 ----
-
+<font size=20>
 *Important Note: _This document describes !FlexMonkey 0.8. To find documentation for later versions, please visit the !FlexMonkey [http://flexmonkey.gorillalogic.com#resources Project Home] site._*
-
+</font>
 ----
 
 = Running the Sample Application =
